@@ -16,7 +16,7 @@ mdc: true
 
 _本を中心に開発を設計する_
 
-in Commune Project
+in Commune
 
 ---
 
@@ -49,13 +49,17 @@ Agenda
 
 1. 「Next.jsの考え方」とは
 1. 「Next.jsの考え方」の目的と運用設計
-1. v2プロジェクトと改訂
+1. Communeからのフィードバックと改訂
 
 ---
 layout: fact
 ---
 
-## 「Next.jsの考え方」の目的
+## 「Next.jsの考え方」
+
+---
+
+TBW
 
 ---
 layout: fact
@@ -74,3 +78,15 @@ layout: fact
   - 僕の関わるチーム・関わらないチーム双方からのフィードバックで永続的に洗練できる
 
 ---
+
+TBW
+
+---
+layout: fact
+---
+
+## Communeからのフィードバックと改訂
+
+---
+
+TBW
