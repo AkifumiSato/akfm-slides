@@ -1,0 +1,17 @@
+{
+  "name": "akfm-slides",
+  "version": "0.0.0",
+  "description": "slides for akfm.sato",
+  "dependencies": {
+    "@slidev/cli": "52.14.1",
+    "@slidev/theme-default": "0.25.0",
+    "@slidev/theme-seriph": "0.25.0",
+    "vue": "3.5.29"
+  },
+  "author": "akfm.sato",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "prettier": "3.8.1",
+    "prettier-plugin-slidev": "1.0.5"
+  }
+}
