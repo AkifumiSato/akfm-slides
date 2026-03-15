@@ -49,7 +49,9 @@ Agenda
 
 1. 「Next.jsの考え方」とは
 1. 「Next.jsの考え方」の目的と運用設計
-1. Communeからのフィードバックと改訂
+1. Communeで見えてきた混乱ポイントと改訂
+    - `"use client"`/`"use server"`の混乱
+    - UIのツリー構造設計
 
 ---
 layout: fact
@@ -90,3 +92,9 @@ layout: fact
 ---
 
 TBW
+
+---
+
+# Memo
+
+https://github.com/AkifumiSato/zenn-article/pull/81/changes#diff-036d4c2b13e35ed7603202da55e974ac52aae75b063c568b38ca413b957a9a9e
