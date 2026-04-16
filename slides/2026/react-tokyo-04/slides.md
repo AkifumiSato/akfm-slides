@@ -42,20 +42,9 @@ mdc: true
 transition: fade
 ---
 
-# useEffect乱用
+# 安易なuseEffect
 
-巷でもよく言われてるパターン
-
-- データフェッチを扱いたい
-- 値の変更時に何か処理を行いたい
-
----
-transition: fade
----
-
-# useEffect乱用
-
-e.g. 郵便番号が変わったら住所をリセットしたい
+要件: 郵便番号が変わったら住所をリセットしたい
 
 ```tsx
 // 🙅‍♂️ `useEffect()`の乱用
@@ -73,9 +62,9 @@ function AddressForm() {
 
 ---
 
-# useEffect乱用
+# 安易なuseEffect
 
-e.g. 郵便番号が変わったら住所をリセットしたい
+要件: 郵便番号が変わったら住所をリセットしたい
 
 ```tsx
 // ✅ イベントハンドラでリセットする
@@ -83,23 +72,11 @@ function AddressForm() {
   const [zipCode, setZipCode] = useState("");
   const [address, setAddress] = useState("");
 
-  return (
-    <form>
-      <input
-        type="text"
-        placeholder="郵便番号"
-        value={zipCode}
-        onChange={(e) => {
-          // 1. 郵便番号を更新
-          setZipCode(e.target.value);
-          // 2. 関連する項目を明示的にリセット
-          // 「変更されたときだけ消す」という意図が明確
-          setAddress("");
-        }}
-      />
-      {/* ... */}
-    </div>
-  );
+  // onChange={(e) => {
+  //   setZipCode(e.target.value);
+  //   // イベントハンドラ内で明示的にリセットすることで意図が明確
+  //   setAddress("");
+  // }}
 }
 ```
 
@@ -107,55 +84,45 @@ function AddressForm() {
 transition: fade
 ---
 
-# useState地獄
+# formライブラリを使わない
 
-巷であまり言及されてない？（自明なため？）
-
-- formやデータフェッチの状態管理をしてしまう
-- 状態じゃなくていいものを扱ってしまう
-- ブラウザバック時に復元されないことを無視してしまう
-
----
-transition: fade
----
-
-# useState地獄
-
-e.g. form
+要件: formのバリデーション
 
 ```tsx
 export const UseStateForm: React.FC = () => {
-  // 大量の`useState()`
+  // 🙅‍♂️ 大量の`useState()`
   const [zipCode, setZipCode] = useState("");
+  const [zipCodeError, setZipCodeError] = useState(null);
   const [address, setAddress] = useState("");
-  const [name, setName] = useState("");
-
+  const [addressError, setAddressError] = useState(null);
   // ...
 };
 ```
 
 ---
-transition: fade
----
 
-# useState地獄
+# formライブラリを使わない
 
-e.g. form
+要件: formのバリデーション
 
 ```tsx
-// formで保持するデータ型がまとまってて自明（大抵はzodから推論する）
-type FormInputs = {
-  name: string;
-  zipCode: string;
-  address: string;
-};
+const schema = z.object({
+  name: z.string(),
+  zipCode: z.number(),
+  address: z.number(),
+});
 
-export const HookForm: React.FC = () => {
-  const { register, handleSubmit, setValue } = useForm<FormInputs>({
-    // ...
+export function HookForm {
+  // ✅ formライブラリを使う
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(schema),
   });
 
-  // ...
+  // <input {..register("name")} />
+  // {errors.name && <p role="alert">{errors.name.message}</p>}
 };
 ```
 
@@ -163,9 +130,9 @@ export const HookForm: React.FC = () => {
 transition: fade
 ---
 
-# useState地獄
+# useEffectでデータフェッチ
 
-e.g. data fetching
+要件: SPAでデータフェッチをしたい
 
 ```tsx
 function ProductCard({ id }: { id: string }) {
@@ -173,9 +140,10 @@ function ProductCard({ id }: { id: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // 🙅‍♂️ useEffectでデータフェッチ
   useEffect(() => {
     setLoading(true);
-    fetchProduct(id) // 手動で実行
+    fetchProduct(id)
       .then(setProduct)
       .catch(setError)
       .finally(() => setLoading(false));
@@ -187,12 +155,13 @@ function ProductCard({ id }: { id: string }) {
 
 ---
 
-# useState地獄
+# useEffectでデータフェッチ
 
-e.g. data fetching
+要件: SPAでデータフェッチをしたい
 
 ```tsx
 function ProductCard({ id }: { id: string }) {
+  // ✅ データフェッチライブラリを使う
   const { data: product, isLoading } = useQuery({
     queryKey: ["product", id],
     queryFn: () => fetchProduct(id),
@@ -203,15 +172,59 @@ function ProductCard({ id }: { id: string }) {
 ```
 
 ---
+transition: fade
+---
 
-# その他
+# boomer fetching
 
-今日説明し切れなそうなアンチパターン
+要件: データフェッチもコンポーネントにカプセル化したい
 
-- boomer fetching: クライアントサイドから多数のデータフェッチを行うパターン
-- Popcorn UI: https://zenn.dev/akfm/articles/popcorn-ui-anti-pattern
+```tsx
+function ProductCard({ id }: { id: string }) {
+  // 🤔 画面全体でいくつのデータフェッチが発生するか
+  const { data: product, isLoading } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => fetchProduct(id),
+  });
 
-気になったら声かけてください
+  // ...
+}
+```
+
+少数のデータフェッチの場合なら問題になりにくい
+
+---
+
+# boomer fetching
+
+要件: データフェッチもコンポーネントにカプセル化したい
+
+```tsx
+// Server Components
+async function ProductCard({ id }: { id: string }) {
+  // ✅ サーバー間通信ならN個の通信でも比較的安定
+  // Streamingも駆使すると尚Good
+  const product = await fetchProduct(id);
+
+  // ...
+}
+```
+
+---
+
+# Popcorn UI:
+
+説明し切れないので記事だけ紹介
+
+https://zenn.dev/akfm/articles/popcorn-ui-anti-pattern
+
+---
+layout: center
+---
+
+- 技術顧問業をしてます
+- Next.js、AI、開発プロセス、育成など
+- お気軽にご相談ください
 
 ---
 layout: section
