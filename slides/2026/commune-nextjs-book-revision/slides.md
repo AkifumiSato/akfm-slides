@@ -8,13 +8,13 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: 『Next.jsの考え方」の伝え方
+title: 『Next.jsの考え方』は何が足りないのか
 mdc: true
 ---
 
-# 「Next.jsの考え方」の<br>伝え方
+# 『Next.jsの考え方』は<br>何が足りないのか
 
-in Commune
+in Commune's Event
 
 ---
 
@@ -41,13 +41,24 @@ in Commune
 
 ---
 
-# 『Next.jsの考え方』の伝え方
+# リプレイスPJと技術顧問の関わり方
 
-Agenda
+ミッション: 少ない時間でチームが自信を持って進められるようサポートする
+
+- チームの自走を妨げる技術的障壁の突破
+  - <span v-mark="{ color: 'red' }">『Next.jsの考え方』を通じた設計支援</span>
+  - モブプログラミングを通した実装支援
+  - その他個別具体の相談
+
+---
+
+# Agenda
+
+『Next.jsの考え方』をPJで使うリアル
 
 1. 『Next.jsの考え方』とは
-1. 『Next.jsの考え方』の目的とスコープ
-1. 混乱ポイントと改訂（with Commune）
+1. 目的とスコープ
+1. PJで見えてきた課題点と改訂
 
 ---
 layout: section
@@ -69,7 +80,7 @@ https://zenn.dev/akfm/books/nextjs-basic-principle
 layout: section
 ---
 
-# 『Next.jsの考え方』の<br>目的とスコープ
+# 目的とスコープ
 
 ---
 
@@ -84,7 +95,7 @@ layout: section
 
 ---
 
-# 『Next.jsの考え方』の目的: アンチテーゼ
+# アンチテーゼ
 
 誤った理解に基づく批判に対する、自分なりのアンチテーゼ
 
@@ -96,7 +107,7 @@ layout: section
 
 ---
 
-# 『Next.jsの考え方』の目的: パブリックドキュメント
+# パブリックドキュメント
 
 自分の仕事で使うパブリックドキュメントが欲しかった
 
@@ -108,7 +119,7 @@ layout: section
 
 ---
 
-# 『Next.jsの考え方』の目的: 自身の探究
+# 自身の探究
 
 執筆過程で理解が深まることを知っていたので、自身の探究目的も兼ねていた
 
@@ -134,7 +145,7 @@ layout: section
 layout: section
 ---
 
-# 混乱ポイントと改訂<br>（with Commune）
+# PJで見えてきた<br>課題点と改訂
 
 ---
 
@@ -148,7 +159,7 @@ Communeでも他の会社でも、一定の混乱パターンが見られた
 
 ---
 
-# バックエンド的レイヤー志向設計のミスマッチ
+# レイヤー志向設計のミスマッチ
 
 改訂なし: [データフェッチ コロケーション](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_1_colocation)
 
@@ -198,3 +209,11 @@ layout: fact
 ---
 
 ## Communeのみなさんと関わっていく中で、<br>お互いの成長を感じています
+
+---
+
+# memo
+
+- イベントの流れを汲んだ内容にしたい
+  - 過去の執筆が巡り巡って役に立ったこと
+  - 自らが執筆を率先したこと
