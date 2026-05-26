@@ -9,6 +9,7 @@ drawings:
   persist: false
 transition: slide-left
 title: 『Next.jsの考え方』は何が足りないのか
+routerMode: hash
 mdc: true
 ---
 
