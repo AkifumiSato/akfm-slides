@@ -8,15 +8,13 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: 「Next.jsの考え方」は何が足りないのか
+title: 『Next.jsの考え方』は何が足りないのか
 mdc: true
 ---
 
-# 「Next.jsの考え方」は<br>何が足りないのか
+# 『Next.jsの考え方』は<br>何が足りないのか
 
-_本を中心に開発を設計する_
-
-in Commune Project
+in Commune's Event
 
 ---
 
@@ -43,34 +41,179 @@ in Commune Project
 
 ---
 
-# 「Next.jsの考え方」は何が足りないのか
+# リプレイスPJと技術顧問の関わり方
 
-Agenda
+ミッション: 少ない時間でチームが自信を持って進められるようサポートする
 
-1. 「Next.jsの考え方」とは
-1. 「Next.jsの考え方」の目的と運用設計
-1. v2プロジェクトと改訂
-
----
-layout: fact
----
-
-## 「Next.jsの考え方」の目的
-
----
-layout: fact
----
-
-## 「Next.jsの考え方」の目的
+- チームの自走を妨げる技術的障壁の突破
+  - <span v-mark="{ color: 'red' }">『Next.jsの考え方』を通じた設計支援</span>
+  - モブプログラミングを通した実装支援
+  - その他個別具体の相談
 
 ---
 
-# 「Next.jsの考え方」の目的
+# Agenda
+
+『Next.jsの考え方』をPJで使うリアル
+
+1. 『Next.jsの考え方』とは
+1. 目的とスコープ
+1. PJで見えてきた課題点と改訂
+
+---
+layout: section
+---
+
+# 『Next.jsの考え方』とは
+
+---
+
+# 『Next.jsの考え方』
+
+https://zenn.dev/akfm/books/nextjs-basic-principle
+
+<div class="flex justify-center h-70% mt-10">
+  <img src="/book-cover.png">
+</div>
+
+---
+layout: section
+---
+
+# 目的とスコープ
+
+---
+
+# 『Next.jsの考え方』の目的
 
 なぜ僕が多くの時間をかけてこの本を書き、改訂を続けてるのか
 
-- Next.jsアプリケーションにおける設計思想やベストプラクティスの形式知化
-  - 無料にすることでアクセスが容易で最新情報に追従した内容にできる
-  - 僕の関わるチーム・関わらないチーム双方からのフィードバックで永続的に洗練できる
+- 設計思想やベストプラクティスの形式知化
+  - **アンチテーゼ**
+  - **パブリックドキュメント**
+  - **自身の探究**
 
 ---
+
+# アンチテーゼ
+
+誤った理解に基づく批判に対する、自分なりのアンチテーゼ
+
+- 「xxxの方がシンプル」
+- 「Next.jsはReactと癒着してる」
+- 「`"use client"`みたいなディレクティブは最悪」
+
+これらの議論には本来<span v-mark="{ color: 'red' }" class="font-bold">Next.jsの理解が必要</span>
+
+---
+
+# パブリックドキュメント
+
+自分の仕事で使うパブリックドキュメントが欲しかった
+
+- フロントエンドエキスパートとして様々なチームと関わる=効率的な布教が重要
+  - アクセスが容易なドキュメント
+  - 包括的なドキュメント
+  - 更新されるドキュメント
+- 複数人で更新するより1人の方が品質高められるし自由度も高い
+
+---
+
+# 自身の探究
+
+執筆過程で理解が深まることを知っていたので、自身の探究目的も兼ねていた
+
+- 前提: Rustの本を書いた時に本の執筆のメリットとデメリットを感じた
+  - メリット: 執筆過程で数段詳しくなる
+  - デメリット: 商用紙は自由度が低い
+- Next.jsの設計思想やプラクティスを体系立てて理解したかった
+- 記事や本を書いて人に褒められるのが嬉しかったからまた書いてみたかった
+
+---
+
+# 『Next.jsの考え方』のスコープ
+
+『Next.jsの考え方』が何でないかを理解するとわかりやすい
+
+- 入門書やAPIリファレンスではない
+- 思考停止で真似できるプラクティスや構成は書いてない
+- あくまで包括的な設計思想とプラクティスを訴求する本
+
+個別の補完や最適解の模索は、<span v-mark="{ color: 'red' }" class="font-bold">僕自身が現場でサポートすべき</span>内容
+
+---
+layout: section
+---
+
+# PJで見えてきた<br>課題点と改訂
+
+---
+
+# 『Next.jsの考え方』の課題
+
+Communeでも他の会社でも、一定の混乱パターンが見られた
+
+1. バックエンド的レイヤー志向設計のミスマッチ
+1. `"use client"`/`"use server"`の責務誤解
+1. UIのツリー構造分解不足
+
+---
+
+# レイヤー志向設計のミスマッチ
+
+改訂なし: [データフェッチ コロケーション](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_1_colocation)
+
+- Next.jsはコロケーション志向なので、バックエンド的なレイヤー志向はミスマッチになりやすい
+  - [Meta規模の大規模開発研究](https://zenn.dev/akfm/articles/react-team-vision)からコロケーション志向を重視してる
+  - Featrue Sliced Designなど一部で研究されてるが、マイノリティ
+- Communeにおいても、この章を元に話が進んだので改訂なし
+
+---
+
+# `"use client"`/`"use server"`の責務誤解
+
+追加: [クライアントとサーバーのバンドル境界](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_2_bundle_boundary)
+
+<div class="flex justify-center h-70% mt-10">
+  <img src="/rsc-bundle.png">
+</div>
+
+---
+
+# UIのツリー構造分解不足
+
+改訂: [UIをツリーに分解する](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_2_container_1st_design)
+
+<div class="flex justify-center h-70% mt-10">
+  <img src="/ui-tree.png">
+</div>
+
+---
+layout: section
+---
+
+# まとめ
+
+---
+
+# 『Next.jsの考え方』の伝え方
+
+Next.jsとチーム開発の統合プロセス
+
+- 本: パブリックドキュメント
+- 僕: 個別の補完や最適解の模索
+- 改善: Communeと関わってく中で改善点が見つかり、それがCommuneにも活きてくる
+
+---
+layout: fact
+---
+
+## Communeのみなさんと関わっていく中で、<br>お互いの成長を感じています
+
+---
+
+# memo
+
+- イベントの流れを汲んだ内容にしたい
+  - 過去の執筆が巡り巡って役に立ったこと
+  - 自らが執筆を率先したこと
