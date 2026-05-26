@@ -3,7 +3,8 @@
 ## Slide
 
 - [slides.md](./slides.md)
+- [github pages](https://akifumisato.github.io/akfm-slides/2026/commune-nextjs-book-revision/1)
 
 ## Event
 
-TBW
+https://commune.connpass.com/event/389477/
