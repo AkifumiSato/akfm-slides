@@ -1,0 +1,67 @@
+name: Deploy Multiple Slides to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 二重実行された場合は古いジョブをキャンセルする設定
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 11.3.0
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Slides
+        run: pnpm build:slides
+
+      # 成果物を一箇所に集約
+      - name: Aggregate dist directories
+        run: |
+          mkdir -p public-dist
+          find slides -maxdepth 3 -type d -name "dist" | while read -r dist_dir; do
+            # 例: "slides/2026/commune-nextjs-book-revision/dist" -> "2026/commune-nextjs-book-revision"
+            target_path=$(echo "$dist_dir" | sed -e 's|^slides/||' -e 's|/dist$||')
+            
+            # 公開フォルダ側に階層を作って、distの中身「だけ」をコピー
+            mkdir -p "public-dist/$target_path"
+            cp -r "$dist_dir/"* "public-dist/$target_path/"
+          done
+
+      # GitHub Pages へのアップロードとデプロイ
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public-dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,2 +1,4 @@
 packages:
   - "slides/*/*"
+allowBuilds:
+  esbuild: false

@@ -1,9 +1,9 @@
 {
-  "name": "commune-nextjs-book-revision",
+  "name": "react-tokyo-04",
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "slidev build --base /akfm-slides/2026/react-tokyo-04/",
     "dev": "slidev",
     "export": "slidev export"
   }
