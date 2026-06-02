@@ -41,12 +41,33 @@ in Commune's Event
 ```
 
 ---
+layout: fact
+transition: fade
+---
 
-# リプレイスPJと技術顧問の関わり方
+## 『自律的な組織とアーキテクチャ』
 
-ミッション: 少ない時間でチームが自信を持って進められるようサポートする
+---
+layout: fact
+transition: fade
+---
 
-- チームの自走を妨げる技術的障壁の突破
+## 具体的に、フロントエンドでどう実現するの？
+
+---
+layout: fact
+---
+
+## お任せください💁‍♂️
+
+---
+
+# フロントエンドやNext.jsの専門家目線でサポート
+
+リプレイスPJにおける僕が行ったサポート
+
+- ミッション: 「短納期と高品質を両立させるべく、技術的課題を解消すること」
+- アプローチ: チームの自走を妨げる技術的課題の探索と解消
   - <span v-mark="{ color: 'red' }">『Next.jsの考え方』を通じた設計支援</span>
   - モブプログラミングを通した実装支援
   - その他個別具体の相談
@@ -58,8 +79,8 @@ in Commune's Event
 『Next.jsの考え方』をPJで使うリアル
 
 1. 『Next.jsの考え方』とは
-1. 目的とスコープ
-1. PJで見えてきた課題点と改訂
+1. 『Next.jsの考え方』の目的とスコープ
+1. 『Next.jsの考え方』の適用と改訂
 
 ---
 layout: section
@@ -81,7 +102,7 @@ https://zenn.dev/akfm/books/nextjs-basic-principle
 layout: section
 ---
 
-# 目的とスコープ
+# 『Next.jsの考え方』の<br>目的とスコープ
 
 ---
 
@@ -89,10 +110,9 @@ layout: section
 
 なぜ僕が多くの時間をかけてこの本を書き、改訂を続けてるのか
 
-- 設計思想やベストプラクティスの形式知化
-  - **アンチテーゼ**
-  - **パブリックドキュメント**
-  - **自身の探究**
+- **アンチテーゼ**
+- **パブリックドキュメント**
+- **自身の探究**
 
 ---
 
@@ -146,34 +166,35 @@ layout: section
 layout: section
 ---
 
-# PJで見えてきた<br>課題点と改訂
+# PJの混乱と<br>『Next.jsの考え方』の適用
 
 ---
 
-# 『Next.jsの考え方』の課題
+# PJの混乱と『Next.jsの考え方』の適用
 
-Communeでも他の会社でも、一定の混乱パターンが見られた
+PJ初期、Next.jsに関するいくつかの混乱が見られた
 
-1. バックエンド的レイヤー志向設計のミスマッチ
-1. `"use client"`/`"use server"`の責務誤解
-1. UIのツリー構造分解不足
+- バックエンド的レイヤー志向設計のミスマッチ
+- `"use client"`/`"use server"`の責務誤解
+- UIのツリー構造分解不足
+
+これらの課題解決を<span v-mark="{ color: 'red'}" class="font-bold">『Next.jsの考え方』で行いたかった</span>
 
 ---
 
 # レイヤー志向設計のミスマッチ
 
-改訂なし: [データフェッチ コロケーション](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_1_colocation)
+[データフェッチコロケーション](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_1_colocation)に則り、設計見直し
 
 - Next.jsはコロケーション志向なので、バックエンド的なレイヤー志向はミスマッチになりやすい
   - [Meta規模の大規模開発研究](https://zenn.dev/akfm/articles/react-team-vision)からコロケーション志向を重視してる
-  - Featrue Sliced Designなど一部で研究されてるが、マイノリティ
-- Communeにおいても、この章を元に話が進んだので改訂なし
+  - Feature Sliced Designなど一部で研究されてるが、マイノリティ
 
 ---
 
 # `"use client"`/`"use server"`の責務誤解
 
-追加: [クライアントとサーバーのバンドル境界](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_2_bundle_boundary)
+[クライアントとサーバーのバンドル境界](https://zenn.dev/akfm/books/nextjs-basic-principle/viewer/part_2_bundle_boundary)を追加し解決
 
 <div class="flex justify-center h-70% mt-10">
   <img src="/rsc-bundle.png">
@@ -206,15 +227,7 @@ Next.jsとチーム開発の統合プロセス
 - 改善: Communeと関わってく中で改善点が見つかり、それがCommuneにも活きてくる
 
 ---
-layout: fact
+layout: section
 ---
 
-## Communeのみなさんと関わっていく中で、<br>お互いの成長を感じています
-
----
-
-# memo
-
-- イベントの流れを汲んだ内容にしたい
-  - 過去の執筆が巡り巡って役に立ったこと
-  - 自らが執筆を率先したこと
+# End
