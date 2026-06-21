@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "slides for akfm.sato",
   "scripts": {
+    "gen:slide": "plop slide",
     "build:slides": "pnpm --filter \"./slides/**\" build"
   },
   "dependencies": {
@@ -14,6 +15,7 @@
   "author": "akfm.sato",
   "packageManager": "pnpm@11.3.0",
   "devDependencies": {
+    "plop": "4.0.5",
     "prettier": "3.8.1",
     "prettier-plugin-slidev": "1.0.5"
   }
