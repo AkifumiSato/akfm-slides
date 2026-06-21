@@ -1,0 +1,10 @@
+{
+  "name": "react-ux-principles",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /akfm-slides/2026/react-ux-principles/",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}

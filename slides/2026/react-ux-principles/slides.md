@@ -1,7 +1,6 @@
 ---
 theme: default
-# https://unsplash.com/ja
-background: https://images.unsplash.com/photo-1761645503059-1d38483343df?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+background: https://images.unsplash.com/photo-1549074862-6173e20d02a8?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 class: text-center
 highlighter: shiki
 lineNumbers: false
@@ -9,12 +8,14 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: TBW
+title: ReactのUX哲学
 routerMode: hash
 mdc: true
 ---
 
-# Title
+# ReactのUX哲学
+
+Reactチームが考える「良いUX」とは
 
 ---
 
