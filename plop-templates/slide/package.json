@@ -1,0 +1,10 @@
+{
+  "name": "{{kebabCase name}}",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /akfm-slides/{{currentYear}}/{{kebabCase name}}/",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}
