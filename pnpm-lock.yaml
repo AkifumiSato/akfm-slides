@@ -33,9 +33,9 @@ importers:
 
   slides/2026/commune-nextjs-book-revision: {}
 
-  slides/2026/react-tokyo-04: {}
+  slides/2026/react-principles: {}
 
-  slides/2026/react-ux-principles: {}
+  slides/2026/react-tokyo-04: {}
 
 packages:
 
