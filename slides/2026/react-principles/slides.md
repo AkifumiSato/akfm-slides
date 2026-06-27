@@ -8,12 +8,12 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: React哲学
+title: 君はReactを何だと思ってるんだ
 routerMode: hash
 mdc: true
 ---
 
-# React哲学
+# 君はReactを何だと思ってるんだ
 
 Reactの価値観を構成する4つの知覚的視座
 
@@ -40,10 +40,16 @@ Reactの価値観を構成する4つの知覚的視座
 ```
 
 ---
+layout: section
+---
 
-# 概要: React哲学
+## テーマ: 「君はReactを何だと思ってるんだ」
 
-Reactの価値観を構成する4つの知覚的視座についての自論
+---
+
+# Table of Contents
+
+Reactの価値観を構成する4つの知覚的視座について
 
 1. **存在目的**: なぜ存在するのか
 2. **要件**: 何を成し遂げたいのか
@@ -112,9 +118,11 @@ layout: section
 
 UIの進化に伴い、Reactに求められる課題解決も変わってきてる
 
-1. 2013年〜2017年頃: インタラクション
-2. 2018年〜2021年頃: パフォーマンス
-3. 2022年~: 非同期UI（シームレスな体験）
+| 年代             | 主な関心         | Reactの発展                   |
+| ---------------- | ---------------- | ----------------------------- |
+| 2013年〜2017年頃 | インタラクション | hooks                         |
+| 2018年〜2021年頃 | パフォーマンス   | Concurrent Rendering          |
+| 2022年~          | 非同期UI         | transition, Suspense, + more? |
 
 ---
 
