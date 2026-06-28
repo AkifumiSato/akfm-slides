@@ -1,0 +1,10 @@
+{
+  "name": "what-do-you-think-react-is",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /akfm-slides/2026/what-do-you-think-react-is/",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}
