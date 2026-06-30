@@ -3,7 +3,7 @@
 ## Slide
 
 - [slides.md](./slides.md)
-- [github pages](https://akifumisato.github.io/akfm-slides/2026/react-ux-principles)
+- [github pages](https://akifumisato.github.io/akfm-slides/2026/this-is-react)
 
 ## Event
 
