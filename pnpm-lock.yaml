@@ -35,6 +35,8 @@ importers:
 
   slides/2026/react-tokyo-04: {}
 
+  slides/2026/what-do-you-think-react-is: {}
+
 packages:
 
   '@antfu/install-pkg@1.1.0':
