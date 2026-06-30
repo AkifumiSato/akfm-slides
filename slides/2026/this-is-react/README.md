@@ -1,4 +1,4 @@
-# Slide: Reactの裏にあるUX哲学
+# Slide: This is React.
 
 ## Slide
 
