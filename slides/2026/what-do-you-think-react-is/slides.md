@@ -8,14 +8,14 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: 君はReactを何だと思ってるんだ
+title: This is React.
 routerMode: hash
 mdc: true
 ---
 
-# 君はReactを何だと思ってるんだ
+# This is React.
 
-Reactを構成する4つの知覚的視座
+Reactの価値観考察
 
 ---
 
@@ -43,19 +43,13 @@ Reactを構成する4つの知覚的視座
 layout: fact
 ---
 
-## AI時代だからこそ、概念的な理解が重要
-
----
-layout: fact
----
-
-## Reactとは何なのか、様々な視座で考えてみよう
+## Reactって、何だろう
 
 ---
 
 # Table of Contents
 
-Reactを構成する4つの知覚的視座について
+Reactの価値観考察
 
 1. **存在目的**: なぜ存在するのか
 2. **要件**: 何を成し遂げたいのか
@@ -126,11 +120,11 @@ layout: section
 
 UIの進化に伴い、Reactに求められる課題解決も変わってきてる
 
-| 年代     | 主な関心                 | Reactの発展          |
-| -------- | ------------------------ | -------------------- |
-| 2013年〜 | インタラクション         | hooks                |
-| 2018年〜 | パフォーマンス           | Concurrent Rendering |
-| 2022年~  | データフェッチ、非同期UI | RSC, Async React     |
+| 年代     | 主な関心                         | Reactの発展                             |
+| -------- | -------------------------------- | --------------------------------------- |
+| 2013年〜 | インタラクション                 | コンポーネント指向, 再レンダリング, JSX |
+| 2018年〜 | パフォーマンス、ロジックの局所化 | Concurrent Rendering, hooks             |
+| 2022年~  | データフェッチ、非同期UI         | RSC, Async React                        |
 
 ---
 
@@ -219,7 +213,7 @@ layout: section
 
 # UI = ?
 
-UIを指揮で表すモデリングも変わり続けてる
+UIを式で表すモデリングも変わり続けてる
 
 - 状態をどう扱うか
 - データフェッチをどう統合するか
@@ -251,9 +245,9 @@ layout: section
 
 ---
 
-# Reactとは何なのか
+# This is React.
 
-Reactを構成する4つの知覚的視座について
+Reactの価値観考察
 
 1. 存在目的: UI構築のためのライブラリ（orフレームワーク）
 2. 要件: インタラクション・パフォーマンス・データフェッチ・非同期UI
