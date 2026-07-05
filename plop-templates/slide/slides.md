@@ -29,11 +29,10 @@ mdc: true
 {
   "name": "佐藤 昭文",
   "alias": ["akfm_sato", "あっきー"],
-  "job": "フロントエンドエキスパート",
-  "tags": ["Next.js", "React", "テスト", "リーン開発"],
+  "job": ["フロントエンドエキスパート", "技術顧問"],
+  "tags": ["Next.js", "React", "UX"],
   "sns": {
     "x": "akfm_sato",
-    "GitHub": "AkifumiSato",
     "zenn.dev": "akfm",
   },
 }
