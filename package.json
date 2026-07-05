@@ -4,7 +4,7 @@
   "description": "slides for akfm.sato",
   "scripts": {
     "gen:slide": "plop slide",
-    "build:slides": "pnpm --filter \"./slides/**\" build"
+    "build:slides": "turbo run build"
   },
   "dependencies": {
     "@slidev/cli": "52.14.1",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "plop": "4.0.5",
     "prettier": "3.8.1",
-    "prettier-plugin-slidev": "1.0.5"
+    "prettier-plugin-slidev": "1.0.5",
+    "turbo": "2.10.3"
   }
 }
