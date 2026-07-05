@@ -1,0 +1,10 @@
+{
+  "name": "why-nextjs",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /akfm-slides/2026/why-nextjs/",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}
