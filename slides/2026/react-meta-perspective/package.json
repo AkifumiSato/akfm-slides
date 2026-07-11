@@ -1,9 +1,9 @@
 {
-  "name": "this-is-react",
+  "name": "react-meta-perspective",
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build --base /akfm-slides/2026/this-is-react/",
+    "build": "slidev build --base /akfm-slides/2026/react-meta-perspective/",
     "dev": "slidev --open",
     "export": "slidev export"
   }

@@ -8,14 +8,14 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: This is React.
+title: メタ視点で考えるReact
 routerMode: hash
 mdc: true
 ---
 
-# This is React.
+# メタ視点で考えるReact
 
-Reactの価値観考察
+なぜ我々はReactを使うのか
 
 ---
 
@@ -43,13 +43,13 @@ Reactの価値観考察
 layout: fact
 ---
 
-## Reactって、何だろう
+## 「Reactって何で必要なんですか？」
 
 ---
 
 # Table of Contents
 
-Reactの価値観考察
+メタ視点で考えるReact
 
 1. **存在目的**: なぜ存在するのか
 2. **要件**: 何を成し遂げたいのか
@@ -251,7 +251,7 @@ layout: section
 
 ---
 
-# This is React.
+# メタ視点で考えるReact
 
 Reactの価値観考察
 
