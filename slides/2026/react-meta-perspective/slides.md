@@ -261,6 +261,12 @@ Reactの価値観考察
 4. モデリング: `UI=f(data)(state)`, `await UI=await f(await state)`
 
 ---
+layout: fact
+---
+
+https://x.com/evanyou/status/1378409318102470663?s=20
+
+---
 layout: section
 ---
 
