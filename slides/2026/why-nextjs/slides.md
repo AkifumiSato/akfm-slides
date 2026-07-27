@@ -39,7 +39,7 @@ mdc: true
 ```
 
 ---
-layout: intro
+layout: fact
 ---
 
 ## 「なぜフレームワークを使うの？」
@@ -48,10 +48,14 @@ layout: intro
 layout: quote
 ---
 
-> フレームワークとは、新しいアプリケーションの開発をより効率的にする再利用可能なソフトウェアコンポーネントを集めたものです。
+# フレームワークとは
+
+> WebアプリケーションやWebサイトを効率的に開発するための土台となるソフトウェアの枠組みです
+
+by Google AI要約
 
 ---
-layout: intro
+layout: fact
 ---
 
 ## 「なぜNext.jsを使うの？」
