@@ -1,7 +1,7 @@
 ---
 theme: default
 # https://unsplash.com/ja
-background: https://images.unsplash.com/photo-1742604004678-2f91a55970cc?q=80&w=2602&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+background: https://images.unsplash.com/photo-1624002716397-e1c876108c68?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 class: text-center
 highlighter: shiki
 lineNumbers: false
@@ -9,14 +9,14 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: Next.js, User, Developer - Next.jsの価値観に迫る
+title: ユーザーから始まるNext.jsの設計思想
 routerMode: hash
 mdc: true
 ---
 
-# Next.js, User, Developer
+# ユーザーから始まる<br>Next.jsの設計思想
 
-Next.jsの価値観に迫る
+デフォルトで高いパフォーマンス・優れた開発者体験
 
 ---
 
