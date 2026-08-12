@@ -1,0 +1,10 @@
+{
+  "name": "nextjs-user-developer",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /akfm-slides/2026/nextjs-user-developer/",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}
