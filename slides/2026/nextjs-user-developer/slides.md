@@ -79,7 +79,7 @@ transition: fade
 | 2022/05 | App Router発表 | [Layouts RFC](https://nextjs.org/blog/layouts-rfc) |
 | 2022/10 | Next.js@v13.0  | App Router Beta                                    |
 | 2023/05 | Next.js@v13.4  | App Router Stable                                  |
-| 2024/10 | Next.js@v14.0  | PPR                                                |
+| 2023/10 | Next.js@v14.0  | PPR                                                |
 | 2024/10 | Next.js@v15.0  | `params`などの破壊的変更                           |
 | 2025/10 | Next.js@v16.0  | Cache Components                                   |
 | 2026/06 | Next.js@v16.3  | Instant Navigationなど                             |
@@ -180,7 +180,7 @@ layout: statement
 
 # Next.jsにおける『普遍性』と『大胆な進化』
 
-一見矛盾した要求にうまく対処してる
+一見矛盾した要求にうまく対処している
 
 - <span v-mark="{ color: 'red' }" class="font-bold">最小限の破壊的変更</span>: APIの破壊的変更は基本避ける
 - <span v-mark="{ color: 'red' }" class="font-bold">慎重な抽象化</span>: 過度な抽象化は避け、愚直に実装する
@@ -198,7 +198,7 @@ by [Sebastian Markbåge](https://ja.react.dev/community/team#sebastian-markb%C3%
 layout: statement
 ---
 
-## Next.jsは<br>『普遍性』と『大胆な進化』のバランスが優れてる
+## Next.jsは<br>『普遍性』と『大胆な進化』のバランスが優れている
 
 ---
 layout: statement
@@ -226,7 +226,7 @@ section 3
 
 『設計思想』を段階的に分解してみる
 
-1. Concept
+1. <span v-mark="{ color: 'orange', type: 'circle' }">Concept</span>
 2. Model
 3. Rules
 4. Interfaceなど
@@ -234,6 +234,8 @@ section 3
 ---
 layout: statement
 ---
+
+Next.jsのコンセプト:
 
 ## 「**デフォルトで高いパフォーマンス、優れた開発者体験**」
 
@@ -249,7 +251,7 @@ layout: statement
 
 デフォルト通り実装すれば、高いパフォーマンスが得られる
 
-1. Pages Router時代: SSR by default（[リッチなWebアプリケーションのための7つの原則](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415)]）
+1. Pages Router時代: SSR by default（[リッチなWebアプリケーションのための7つの原則](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415)）
 2. App Router時代: Nested LayoutとStreaming SSR
 3. Cache Components時代: Instant Navigation
 
@@ -285,7 +287,7 @@ layout: statement
 layout: statement
 ---
 
-## 「デフォルトで高いパフォーマンス」は<br>中長期的にビジネスや我々開発者を守ってくれる<br>（エンタープライズ的指向）
+## 「デフォルトで高いパフォーマンス」は<br>中長期的にビジネスや我々開発者を守ってくれる<br>（エンタープライズ指向）
 
 ---
 
@@ -294,7 +296,7 @@ layout: statement
 Instant Navigationは非常にNext.jsらしい世界観の主張
 
 - [**Instant Navigation**](https://nextjs.org/docs/app/guides/instant-navigation)
-  - 即座にページ遷移レンダリングが開始され、サーバー側処理はStreamingで遅延
+  - 遷移先のレンダリングが即座に開始され、サーバー側処理はStreamingで遅延
   - ハードナビゲーション時のパフォーマンスなど、従来のSPAと異なる
 - 時間のかかる非同期処理にはCacheかStreamingが必須＝「**デフォルトで高いパフォーマンス**」
 - 合成可能なCache、開発中のエラーやデバッグツールにより解消方法が明確＝「**優れた開発者体験**」
@@ -303,7 +305,7 @@ Instant Navigationは非常にNext.jsらしい世界観の主張
 layout: statement
 ---
 
-## Next.jsが目指す方向性は変わってない
+## Next.jsが目指す方向性は変わっていない
 
 ---
 layout: statement
@@ -326,7 +328,7 @@ section 4
 『設計思想』を段階的に分解してみる
 
 1. Concept
-2. Model
+2. <span v-mark="{ color: 'orange', type: 'circle' }">Model</span>
 3. Rules
 4. Interfaceなど
 
@@ -367,7 +369,7 @@ section 4
 CacheがRSCのモデルに組み込まれた
 
 <div class="flex justify-center mt-10">
-  <img src="/cache-components-architecture.png" alt="RSC" class="h-80">
+  <img src="/cache-components-architecture.png" alt="Cache Components" class="h-80">
 </div>
 
 ---
@@ -393,7 +395,7 @@ section -1
 
 # 『ユーザーから始まるNext.jsの設計思想』
 
-Next.jsはエンドユーザーと開発者、どちらの要求にも応えようとしてる
+Next.jsはエンドユーザーと開発者、どちらの要求にも応えようとしている
 
 - Next.jsは『普遍性』と『大胆な進化』という要求を満たすべく、以下の戦略を取っている
   - 『最小限の破壊的変更』
