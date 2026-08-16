@@ -49,6 +49,8 @@ layout: fact
 layout: section
 ---
 
+section 1
+
 # Next.jsの歴史
 
 ---
@@ -77,7 +79,8 @@ transition: fade
 | 2022/05 | App Router発表 | [Layouts RFC](https://nextjs.org/blog/layouts-rfc) |
 | 2022/10 | Next.js@v13.0  | App Router Beta                                    |
 | 2023/05 | Next.js@v13.4  | App Router Stable                                  |
-| 2024/10 | Next.js@v15.0  | `params`などの破壊的変更、PPRなど                  |
+| 2024/10 | Next.js@v14.0  | PPR                                                |
+| 2024/10 | Next.js@v15.0  | `params`などの破壊的変更                           |
 | 2025/10 | Next.js@v16.0  | Cache Components                                   |
 | 2026/06 | Next.js@v16.3  | Instant Navigationなど                             |
 
@@ -88,8 +91,8 @@ transition: fade
 おおまかに言うと...
 
 1. Pages Router: 過去のNext.js
-2. App Router(default): 現在のNext.js
-3. App Router(Cache Components): 未来のNext.js
+2. App Router: 現在のNext.js
+3. App Router(Cache Components): これからのNext.js
 
 最新版（v16.3）で<span v-mark="{ color: 'red' }" class="font-bold">これらは全て動く</span>
 
@@ -106,12 +109,12 @@ transition: fade
 
 ---
 
-# App Router(default)
+# App Router
 
 現在のNext.js
 
 - 2022年に発表されたRouter
-- RSCサポートなフレームワークの代表格、Pages Routerとは全く異なる設計
+- RSCサポートなフレームワークの代表格、<span v-mark="{ color: 'red' }" class="font-bold">Pages Routerとは全く異なる設計</span>
   - Server Components, Server Functions
   - Nested Layout
   - 多層で設定指向なCache
@@ -120,19 +123,19 @@ transition: fade
 
 # App Router(Cache Components)
 
-未来のNext.js
+これからのNext.js
 
-- 2025年に発表された、App Routerにおける新しい機能群をopt-inするモード
+- 2025年に発表された、App Routerにおける<span v-mark="{ color: 'red' }" class="font-bold">新しい機能群をopt-inするモード</span>
   - PPR・`"use cache"`などを統合
   - Cacheにまつわる開発者体験と最適化を大きく改善
 - experimentalな時期を終えたが、まだデフォルトではない
-- 「未来」と言いつつも、成熟しつつある（v17でデフォルトになる可能性も？）
+- 「これから」と言いつつも、成熟しつつある（v17でデフォルトになる可能性も？）
 
 ---
 layout: statement
 ---
 
-## Next.jsは過去・現在・未来で<br>設計も考え方も全然違う
+## Next.jsは過去・現在・これからで<br>設計も考え方も全然違う
 
 ---
 layout: statement
@@ -144,7 +147,9 @@ layout: statement
 layout: section
 ---
 
-# Next.jsの『進化と破壊的変更』
+section 2
+
+# Next.jsへの要求
 
 ---
 
@@ -172,14 +177,8 @@ layout: statement
 ## Next.jsはVercelのビジネスを担っているため<br>ユーザーからの要望の影響が大きい
 
 ---
-layout: statement
----
 
-## Next.jsのアプローチ<br>『最小限の破壊的変更』『慎重な抽象化』<br>『新規設計の分離』
-
----
-
-# Next.jsにおける『進化と破壊的変更』
+# Next.jsにおける『普遍性』と『大胆な進化』
 
 一見矛盾した要求にうまく対処してる
 
@@ -199,37 +198,50 @@ by [Sebastian Markbåge](https://ja.react.dev/community/team#sebastian-markb%C3%
 layout: statement
 ---
 
-## Next.jsはエンタープライズ的指向のフレームワーク
+## Next.jsは<br>『普遍性』と『大胆な進化』のバランスが優れてる
 
 ---
 layout: statement
 ---
 
-## そうまでして行う『大胆な進化』で<br>Next.jsは何を得たいのか
+## Next.jsはエンタープライズ指向のフレームワークとも言える<br>しかし...
 
 ---
 layout: statement
 ---
 
-## Next.jsは一体、何を目指しているのか？
+## そもそも『大胆な進化』で<br>Next.jsは何を得たいのだろうか？<br>何を目指しているのか？
 
 ---
 layout: section
 ---
 
-# 『Next.jsの設計思想』<br> ~ 普遍的なコンセプト ~
+section 3
+
+# Next.jsの普遍的なコンセプト
+
+---
+
+# 『設計思想』の分類
+
+『設計思想』を段階的に分解してみる
+
+1. Concept
+2. Model
+3. Rules
+4. Interfaceなど
 
 ---
 layout: statement
 ---
 
-## 一言で言うと<br>「**デフォルトで高いパフォーマンス、優れた開発者体験**」
+## 「**デフォルトで高いパフォーマンス、優れた開発者体験**」
 
 ---
 layout: statement
 ---
 
-## Next.jsは、パフォーマンス<br>＝ユーザー体験が最初に来るフレームワーク
+## Next.jsはパフォーマンス<br>つまりユーザー体験が最初に来るフレームワーク
 
 ---
 
@@ -303,17 +315,20 @@ layout: statement
 layout: section
 ---
 
-# 『Next.jsの設計思想』<br> ~ 変化したモデル ~
+section 4
+
+# Next.jsのモデル進化
 
 ---
 
-# 『設計思想』とはなんだろう
+# 『設計思想』の分類
 
-『設計思想』もいくつか分類が可能
+『設計思想』を段階的に分解してみる
 
-1. コンセプト
-2. モデル
-3. ルール・インターフェース・プロトコルなど
+1. Concept
+2. Model
+3. Rules
+4. Interfaceなど
 
 ---
 
@@ -321,12 +336,13 @@ layout: section
 
 歴史を重ねることで、Pages Routerの設計では限界があることがわかってきた
 
-- Pages Router時代: 中央集権的なモデル
-- App Router時代: 自律分散的なモデル
+1. Pages Router: 中央集権的なモデル
+2. App Router: 自律分散的なモデル
+3. App Router(Cache Components): Cache含め自律分散的なモデル
 
 ---
 
-# Pages Router時代: 中央集権的なモデル
+# Pages Router: 中央集権的なモデル
 
 旧来のWeb MVC同様、技術的関心事でレイヤーを切るモデル
 
@@ -336,12 +352,22 @@ layout: section
 
 ---
 
-# App Router時代: 自律分散的なモデル
+# App Router: 自律分散的なモデル
 
 レイヤー指向ではなくコロケーション指向
 
 <div class="flex justify-center mt-10">
-  <img src="/rsc-architecture.png" alt="RSC" class="w-100">
+  <img src="/rsc-architecture.png" alt="RSC" class="h-80">
+</div>
+
+---
+
+# Cache Components: Cache含め自律分散的なモデル
+
+CacheがRSCのモデルに組み込まれた
+
+<div class="flex justify-center mt-10">
+  <img src="/cache-components-architecture.png" alt="RSC" class="h-80">
 </div>
 
 ---
@@ -359,14 +385,22 @@ layout: section
 layout: section
 ---
 
-# まとめ
+section -1
+
+# Wrap up
 
 ---
 
-# まとめ
+# 『ユーザーから始まるNext.jsの設計思想』
 
-Next.jsは「ユーザー体験」を起点に、パフォーマンスと開発者体験を両立させ続けているフレームワーク
+Next.jsはエンドユーザーと開発者、どちらの要求にも応えようとしてる
 
-- Next.jsは『最小限の破壊的変更』『慎重な抽象化』『新規設計の分離』という戦略をとっている
-- Next.jsのコンセプトは「デフォルトで高いパフォーマンス・優れた開発者体験」
-- Next.jsのモデルはApp Routerで、中央集権的 -> 自律分散的な設計にアプローチを変更した
+- Next.jsは『普遍性』と『大胆な進化』という要求を満たすべく、以下の戦略を取っている
+  - 『最小限の破壊的変更』
+  - 『慎重な抽象化』
+  - 『新規設計の分離』
+- Next.jsのコンセプト: 「デフォルトで高いパフォーマンス・優れた開発者体験」
+- Next.jsのモデルはApp Routerで大きく変わった
+  - Pages Router: 中央集権的なモデル
+  - App Router: 自律分散的なモデル
+  - App Router(Cache Components): Cache含め自律分散的なモデル
