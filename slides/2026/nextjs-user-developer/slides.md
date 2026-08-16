@@ -31,7 +31,6 @@ mdc: true
 {
   "name": "佐藤 昭文",
   "alias": ["akfm_sato", "あっきー"],
-  "job": ["フロントエンドエキスパート", "技術顧問"],
   "tags": ["Next.js", "React", "UX"],
   "sns": {
     "x": "akfm_sato",
@@ -58,12 +57,12 @@ transition: fade
 
 # Next.jsの歴史
 
-| 年      | 概要            | 詳細                                |
+| 年月    | 概要            | 詳細                                |
 | ------- | --------------- | ----------------------------------- |
 | 2013/05 | Reactが公開     |                                     |
 | 2016/10 | Next.jsが公開   | 今で言うPages Router                |
 | 2018~   | Gatsby.jsの台頭 | SSGが注目される                     |
-| 2019/07 | Next.js@v9.0    | dynamicルーティング・Typescript対応 |
+| 2019/07 | Next.js@v9.0    | dynamicルーティング・TypeScript対応 |
 | 2020/03 | Next.js@v9.3    | SSG対応                             |
 | 2020/07 | Next.js@v9.5    | ISR対応                             |
 
@@ -73,14 +72,14 @@ transition: fade
 
 # Next.jsの歴史
 
-| 年      | 概要           | 詳細                                               |
+| 年月    | 概要           | 詳細                                               |
 | ------- | -------------- | -------------------------------------------------- |
 | 2022/05 | App Router発表 | [Layouts RFC](https://nextjs.org/blog/layouts-rfc) |
 | 2022/10 | Next.js@v13.0  | App Router Beta                                    |
 | 2023/05 | Next.js@v13.4  | App Router Stable                                  |
 | 2024/10 | Next.js@v15.0  | `params`などの破壊的変更、PPRなど                  |
 | 2025/10 | Next.js@v16.0  | Cache Components                                   |
-| 2025/10 | Next.js@v16.3  | Instant Navigationなど                             |
+| 2026/06 | Next.js@v16.3  | Instant Navigationなど                             |
 
 ---
 
@@ -88,49 +87,107 @@ transition: fade
 
 おおまかに言うと...
 
-1. Pages Router
-2. App Router
-3. Cache Components
+1. Pages Router: 過去のNext.js
+2. App Router(default): 現在のNext.js
+3. App Router(Cache Components): 未来のNext.js
 
 最新版（v16.3）で<span v-mark="{ color: 'red' }" class="font-bold">これらは全て動く</span>
 
 ---
 
-# Pages Routerの立ち位置
+# Pages Router
 
-一応現役という扱いだが...
+過去のNext.js
 
-- 実質的非推奨
+- 2016年当初からあるRouter
+- 現状の実態としては、<span v-mark="{ color: 'red' }" class="font-bold">非推奨扱いに近い</span>
   - 明示的に「非推奨」と宣言するのは、メリットよりデメリットが多い
-  - 脆弱性サポートなどはされてるが、機能開発は皆無
-- App Routerへの移行は、段階的に可能だが難易度は高い
+  - 脆弱性サポートなどはされているが、機能開発は皆無
 
 ---
 
-# App Routerの立ち位置
+# App Router(default)
 
-登場から4年が経った
+現在のNext.js
 
-- App Router＝「今のNext.js」
-- RSCサポートなフレームワークの代表格
-- 様々な進化を続けてる
-  - Vercel以外へのデプロイサポート
-  - MCPやCLIなどのツール拡充
+- 2022年に発表されたRouter
+- RSCサポートなフレームワークの代表格、Pages Routerとは全く異なる設計
+  - Server Components, Server Functions
+  - Nested Layout
+  - 多層で設定指向なCache
 
 ---
 
-# Cache Componentsの立ち位置
+# App Router(Cache Components)
 
-Next.js開発チーム3年間の集大成
+未来のNext.js
 
-- 一言で言うと<span v-mark="{ color: 'red' }" class="font-bold">真のApp Router</span>
+- 2025年に発表された、App Routerにおける新しい機能群をopt-inするモード
   - PPR・`"use cache"`などを統合
   - Cacheにまつわる開発者体験と最適化を大きく改善
-- （個人的には、まだexperimental的立ち位置）
+- experimentalな時期を終えたが、まだデフォルトではない
+- 「未来」と言いつつも、成熟しつつある（v17でデフォルトになる可能性も？）
 
 ---
-layout: quote
+layout: statement
 ---
+
+## Next.jsは過去・現在・未来で<br>設計も考え方も全然違う
+
+---
+layout: statement
+---
+
+## なぜこうなったのか？
+
+---
+layout: section
+---
+
+# Next.jsの『進化と破壊的変更』
+
+---
+
+# フレームワークへの矛盾した要求
+
+人によって求めることは様々
+
+- <span v-mark="{ color: 'red' }" class="font-bold">普遍性</span>: 容易なアップデートと長期サポート
+  - 「フレームワークの更新でビジネスを停滞させるべきではない」
+  - 「フレームワークは恒久的にサポートを続けるべきだ」
+- <span v-mark="{ color: 'red' }" class="font-bold">大胆な進化</span>: API・体験の根本的改善
+  - 「フレームワークは常により良いUXや開発者体験を追求すべきだ」
+  - 進化を怠ったフレームワークは時代遅れとして選ばれなくなるという現実
+
+---
+layout: statement
+---
+
+## 『普遍性』と『大胆な進化』は一見矛盾した要求
+
+---
+layout: statement
+---
+
+## Next.jsはVercelのビジネスを担っているため<br>ユーザーからの要望の影響が大きい
+
+---
+layout: statement
+---
+
+## Next.jsのアプローチ<br>『最小限の破壊的変更』『慎重な抽象化』<br>『新規設計の分離』
+
+---
+
+# Next.jsにおける『進化と破壊的変更』
+
+一見矛盾した要求にうまく対処してる
+
+- <span v-mark="{ color: 'red' }" class="font-bold">最小限の破壊的変更</span>: APIの破壊的変更は基本避ける
+- <span v-mark="{ color: 'red' }" class="font-bold">慎重な抽象化</span>: 過度な抽象化は避け、愚直に実装する
+- <span v-mark="{ color: 'red' }" class="font-bold">新規設計の分離</span>: 大きな変更はモードやRouter自体分けて行う
+
+<br>
 
 > "It's much easier to recover from no abstraction than the wrong abstraction."
 >
@@ -139,24 +196,16 @@ layout: quote
 by [Sebastian Markbåge](https://ja.react.dev/community/team#sebastian-markb%C3%A5ge)氏
 
 ---
+layout: statement
+---
 
-# Next.jsの進化と破壊的変更
-
-「Next.jsはよく変わるフレームワーク」か？
-
-- 実はNext.jsは、破壊的変更を最小限にしている
-  - v15であった`params`が非同期になったとかくらい（codemodあり）
-  - 大きな変更は既存から切り離して実装されてる
-- Pages Routerは機能開発こそされてないが、最新版（v16.3）でも動く
-  - App Routerへの段階的移行も可能
-
-Next.jsは<span v-mark="{ color: 'red' }" class="font-bold">フレームワークの長期サポート</span>が開発者体験における重要な要素だと考えている
+## Next.jsはエンタープライズ的指向のフレームワーク
 
 ---
 layout: statement
 ---
 
-## Next.jsは長期サポートを重視しながら<br>なぜ大きな進化を繰り返すのか？
+## そうまでして行う『大胆な進化』で<br>Next.jsは何を得たいのか
 
 ---
 layout: statement
@@ -180,7 +229,7 @@ layout: statement
 layout: statement
 ---
 
-## Next.jsではパフォーマンス<br>つまりユーザー体験が最初に来るフレームワーク
+## Next.jsは、パフォーマンス<br>＝ユーザー体験が最初に来るフレームワーク
 
 ---
 
@@ -188,8 +237,8 @@ layout: statement
 
 デフォルト通り実装すれば、高いパフォーマンスが得られる
 
-1. Pages Router時代: `getServerSideProps()`
-2. App Router時代: Static by default
+1. Pages Router時代: SSR by default（[リッチなWebアプリケーションのための7つの原則](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415)]）
+2. App Router時代: Nested LayoutとStreaming SSR
 3. Cache Components時代: Instant Navigation
 
 ---
@@ -220,32 +269,29 @@ layout: statement
   - 後からパフォーマンスを改善するのは非常に困難
   - パフォーマンスや品質への信頼は、一度失うと取り戻すのが困難
 
-「デフォルトで高いパフォーマンス」が我々開発者やビジネスを守ってくれる
+---
+layout: statement
+---
+
+## 「デフォルトで高いパフォーマンス」は<br>中長期的にビジネスや我々開発者を守ってくれる<br>（エンタープライズ的指向）
+
+---
+
+# 余談: Instant Navigation
+
+Instant Navigationは非常にNext.jsらしい世界観の主張
+
+- [**Instant Navigation**](https://nextjs.org/docs/app/guides/instant-navigation)
+  - 即座にページ遷移レンダリングが開始され、サーバー側処理はStreamingで遅延
+  - ハードナビゲーション時のパフォーマンスなど、従来のSPAと異なる
+- 時間のかかる非同期処理にはCacheかStreamingが必須＝「**デフォルトで高いパフォーマンス**」
+- 合成可能なCache、開発中のエラーやデバッグツールにより解消方法が明確＝「**優れた開発者体験**」
 
 ---
 layout: statement
 ---
 
-## Next.jsってずっとこのコンセプトなの？
-
----
-
-# 最初のNext.jsとSSR
-
-参考: [【翻訳】リッチなWebアプリケーションのための7つの原則](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415)
-
-- Vercel社長のGuillermo氏は元々Socket.ioなどを開発していたが、Reactが登場してフレームワークを作ることにした
-- リッチなWebアプリケーションでは、パフォーマンスのためにSSRは必須だと主張していた
-
----
-
-# 最新のNext.jsとInstant Navigation
-
-Instant Navigationは非常にNext.jsらしい世界観の主張
-
-- Instant Navigation: 瞬時にページ遷移が開始され、サーバー側処理はStreamingされるような体験
-- デフォルトではCacheかStreamingが必須＝「デフォルトで高いパフォーマンス」
-- 合成可能なCache、開発中のエラーやデバッグツールにより解消方法が明確＝「優れた開発者体験」
+## Next.jsが目指す方向性は変わってない
 
 ---
 layout: statement
@@ -257,22 +303,32 @@ layout: statement
 layout: section
 ---
 
-# 『Next.jsの設計思想』<br> ~ 変化したアプローチ ~
+# 『Next.jsの設計思想』<br> ~ 変化したモデル ~
 
 ---
 
-# Next.jsで変わった設計思想
+# 『設計思想』とはなんだろう
+
+『設計思想』もいくつか分類が可能
+
+1. コンセプト
+2. モデル
+3. ルール・インターフェース・プロトコルなど
+
+---
+
+# App Routerでアップデートされた『モデル』
 
 歴史を重ねることで、Pages Routerの設計では限界があることがわかってきた
 
-- Pages Router時代: 中央集権的な設計思想
-- App Router時代: 自律分散的な設計思想
+- Pages Router時代: 中央集権的なモデル
+- App Router時代: 自律分散的なモデル
 
 ---
 
-# Pages Router時代: 中央集権的な設計思想
+# Pages Router時代: 中央集権的なモデル
 
-旧来のWeb MVC同様、技術的関心毎でレイヤーを切る設計思想
+旧来のWeb MVC同様、技術的関心事でレイヤーを切るモデル
 
 <div class="flex justify-center">
   <img src="/pages-router-architecture.png" alt="Pages Router" class="w-100">
@@ -280,7 +336,7 @@ layout: section
 
 ---
 
-# App Router時代: 自律分散的な設計思想
+# App Router時代: 自律分散的なモデル
 
 レイヤー指向ではなくコロケーション指向
 
@@ -292,7 +348,7 @@ layout: section
 
 # 余談: Pages RouterとTanStack Start
 
-これらはどちらも中央集権的な設計思想
+これらはどちらも中央集権的なモデル
 
 - `getServerSideProps()`相当が`loader()`+`createServerFn()`
 - TanStack Startの方がPages Routerより後発な分、洗練された開発者体験と言える
@@ -309,8 +365,8 @@ layout: section
 
 # まとめ
 
-Next.jsはパフォーマンスから
+Next.jsは「ユーザー体験」を起点に、パフォーマンスと開発者体験を両立させ続けているフレームワーク
 
-- Next.jsは長期サポートを重視しており、破壊的変更より段階的な進化を採用してる
+- Next.jsは『最小限の破壊的変更』『慎重な抽象化』『新規設計の分離』という戦略をとっている
 - Next.jsのコンセプトは「デフォルトで高いパフォーマンス・優れた開発者体験」
-- Next.jsはApp Routerで、中央集権的 -> 自律分散的な設計にアプローチを変更した
+- Next.jsのモデルはApp Routerで、中央集権的 -> 自律分散的な設計にアプローチを変更した
