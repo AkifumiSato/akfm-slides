@@ -82,7 +82,7 @@ transition: fade
 | 2023/10 | Next.js@v14.0  | PPR                                                |
 | 2024/10 | Next.js@v15.0  | `params`などの破壊的変更                           |
 | 2025/10 | Next.js@v16.0  | Cache Components                                   |
-| 2026/06 | Next.js@v16.3  | Instant Navigationなど                             |
+| 2026/06 | Next.js@v16.3  | Instant Navigationsなど                            |
 
 ---
 
@@ -104,7 +104,7 @@ transition: fade
 
 - 2016年当初からあるRouter
 - 現状の実態としては、<span v-mark="{ color: 'red' }" class="font-bold">非推奨扱いに近い</span>
-  - 明示的に「非推奨」と宣言するのは、メリットよりデメリットが多い
+  - 明示的に「非推奨」とするのは、Next.jsにとってデメリットが大きい
   - 脆弱性サポートなどはされているが、機能開発は皆無
 
 ---
@@ -117,7 +117,7 @@ transition: fade
 - RSCサポートなフレームワークの代表格、<span v-mark="{ color: 'red' }" class="font-bold">Pages Routerとは全く異なる設計</span>
   - Server Components, Server Functions
   - Nested Layout
-  - 多層で設定指向なCache
+  - デフォルトで有効・多層なCache
 
 ---
 
@@ -157,7 +157,7 @@ section 2
 
 人によって求めることは様々
 
-- <span v-mark="{ color: 'red' }" class="font-bold">普遍性</span>: 容易なアップデートと長期サポート
+- <span v-mark="{ color: 'red' }" class="font-bold">安定性</span>: 容易なアップデートと長期サポート
   - 「フレームワークの更新でビジネスを停滞させるべきではない」
   - 「フレームワークは恒久的にサポートを続けるべきだ」
 - <span v-mark="{ color: 'red' }" class="font-bold">大胆な進化</span>: API・体験の根本的改善
@@ -168,23 +168,42 @@ section 2
 layout: statement
 ---
 
-## 『普遍性』と『大胆な進化』は一見矛盾した要求
+## 『安定性』と『大胆な進化』は一見矛盾した要求
 
 ---
 layout: statement
 ---
 
-## Next.jsはVercelのビジネスを担っているため<br>ユーザーからの要望の影響が大きい
+## Next.jsはVercelのビジネスを担っているため<br>開発者の意見は無視できない
 
 ---
 
-# Next.jsにおける『普遍性』と『大胆な進化』
+# Next.jsにおける『安定性』と『大胆な進化』
 
 一見矛盾した要求にうまく対処している
 
-- <span v-mark="{ color: 'red' }" class="font-bold">最小限の破壊的変更</span>: APIの破壊的変更は基本避ける
-- <span v-mark="{ color: 'red' }" class="font-bold">慎重な抽象化</span>: 過度な抽象化は避け、愚直に実装する
-- <span v-mark="{ color: 'red' }" class="font-bold">新規設計の分離</span>: 大きな変更はモードやRouter自体分けて行う
+- **最小限の破壊的変更**
+- **慎重な抽象化**
+- **新規設計の分離**
+
+---
+
+# 最小限の破壊的変更
+
+Next.jsではAPIの破壊的変更を基本避けてる
+
+- 当初からある`getInitialProps()`は最新版（v16.3）でも動く
+- v15.0であった`cookies()`や`params`などの非同期化くらい（codemodあり）
+- v14前後は「意図せぬ破壊的変更（バグ）」が多かったが、LTS導入やプロセス変更で改善された
+
+---
+
+# 慎重な抽象化
+
+過度な抽象化は避け、愚直に実装する
+
+- App Router当初からCacheの設計に課題があったことは明白だった（と思う）
+- 慎重な検討と検証を経てCache Componentsに行き着いた
 
 <br>
 
@@ -195,10 +214,21 @@ layout: statement
 by [Sebastian Markbåge](https://ja.react.dev/community/team#sebastian-markb%C3%A5ge)氏
 
 ---
+
+# 新規設計の分離
+
+大きな変更はモードやRouter自体分けて行う
+
+- Pages Router -> App Router(default)
+- App Router(default) -> Cache Components
+
+<span class="font-bold" v-mark="{ color: 'red' }">破壊的変更ではなくRouterやフラグで設計変更を適用</span>
+
+---
 layout: statement
 ---
 
-## Next.jsは<br>『普遍性』と『大胆な進化』のバランスが優れている
+## Next.jsは<br>『安定性』と『大胆な進化』のバランスが優れている
 
 ---
 layout: statement
@@ -243,7 +273,13 @@ Next.jsのコンセプト:
 layout: statement
 ---
 
-## Next.jsはパフォーマンス<br>つまりユーザー体験が最初に来るフレームワーク
+## ここで言うパフォーマンスは<br>ユーザー体験的パフォーマンス<br>（build速度などのパフォーマンスではない）
+
+---
+layout: statement
+---
+
+## つまりNext.jsはユーザー体験が最初に来るフレームワーク
 
 ---
 
@@ -251,9 +287,9 @@ layout: statement
 
 デフォルト通り実装すれば、高いパフォーマンスが得られる
 
-1. Pages Router時代: SSR by default（[リッチなWebアプリケーションのための7つの原則](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415)）
-2. App Router時代: Nested LayoutとStreaming SSR
-3. Cache Components時代: Instant Navigation
+1. Pages Router時代: SSR、コードスプリッティング
+2. App Router時代: RSC、Cache by default、Streaming SSR
+3. Cache Components時代: Instant Navigations（PPR、Cache、Streaming）
 
 ---
 
@@ -264,6 +300,14 @@ layout: statement
 1. Pages Router時代: 0 config（webpack）、ファイルベースルーティング
 2. App Router時代: RSCサポートによるコロケーション設計のサポート
 3. Cache Components時代: Cacheは設定から合成へ
+
+※build速度の体験はv16系で改善されたものの、Viteに対し遅れを取ってしまった
+
+---
+layout: statement
+---
+
+## UX（パフォーマンス） >>> 開発者体験
 
 ---
 layout: statement
@@ -287,17 +331,21 @@ layout: statement
 layout: statement
 ---
 
-## 「デフォルトで高いパフォーマンス」は<br>中長期的にビジネスや我々開発者を守ってくれる<br>（エンタープライズ指向）
+## 「デフォルトで高いパフォーマンス」は<br>中長期的にビジネスや我々開発者を守ってくれる
+
+---
+layout: statement
+---
+
+## Next.jsはエンタープライズ指向なフレームワーク
 
 ---
 
-# 余談: Instant Navigation
+# 余談: [Instant Navigations](https://nextjs.org/docs/app/guides/instant-navigation)
 
-Instant Navigationは非常にNext.jsらしい世界観の主張
+Instant Navigationsは非常にNext.jsらしい世界観
 
-- [**Instant Navigation**](https://nextjs.org/docs/app/guides/instant-navigation)
-  - 遷移先のレンダリングが即座に開始され、サーバー側処理はStreamingで遅延
-  - ハードナビゲーション時のパフォーマンスなど、従来のSPAと異なる
+- 遷移先のレンダリングが即座に開始され、サーバー側処理はStreamingで遅延
 - 時間のかかる非同期処理にはCacheかStreamingが必須＝「**デフォルトで高いパフォーマンス**」
 - 合成可能なCache、開発中のエラーやデバッグツールにより解消方法が明確＝「**優れた開発者体験**」
 
@@ -305,7 +353,7 @@ Instant Navigationは非常にNext.jsらしい世界観の主張
 layout: statement
 ---
 
-## Next.jsが目指す方向性は変わっていない
+## Next.jsのコンセプトは変わっていない
 
 ---
 layout: statement
@@ -338,50 +386,54 @@ section 4
 
 歴史を重ねることで、Pages Routerの設計では限界があることがわかってきた
 
-1. Pages Router: 中央集権的なモデル
-2. App Router: 自律分散的なモデル
-3. App Router(Cache Components): Cache含め自律分散的なモデル
+1. Pages Router: 実行環境の見通しが良い<span v-mark="{ color: 'red' }" class="font-bold">レイヤー指向</span>なモデル
+2. App Router: データ依存関係の見通しが良い<span v-mark="{ color: 'red' }" class="font-bold">コロケーション指向</span>なモデル
+3. App Router(Cache Components): 合成可能でOpt-inなCache
 
 ---
 
-# Pages Router: 中央集権的なモデル
+# Pages Router: レイヤー指向なモデル
 
-旧来のWeb MVC同様、技術的関心事でレイヤーを切るモデル
+実行環境の見通しは良いが、バケツリレーになる
 
 <div class="flex justify-center">
-  <img src="/pages-router-architecture.png" alt="Pages Router" class="w-100">
+  <img src="/pages-router-architecture.png" alt="Pages Router" class="h-100">
 </div>
 
 ---
 
-# App Router: 自律分散的なモデル
+# App Router: コロケーション指向なモデル
 
-レイヤー指向ではなくコロケーション指向
+ツリー構造にServer処理を組み込み、データ依存関係の見通しが良い
 
-<div class="flex justify-center mt-10">
-  <img src="/rsc-architecture.png" alt="RSC" class="h-80">
+<div class="flex justify-center mt-10 gap-10">
+  <img src="/rsc-architecture.png" alt="RSC" class="w-100">
+
+```tsx
+export async function UserMenu() {
+  // データフェッチとコンポーネントを近づけることができる
+  // （データフェッチコロケーション）
+  const user = await getUser();
+
+  if (!user) {
+    return <LoginButton />;
+  }
+
+  return <UserIcon src={user.avatarUrl} name={user.name} />;
+}
+```
+
 </div>
 
 ---
 
-# Cache Components: Cache含め自律分散的なモデル
+# Cache Components: 合成可能なCache
 
-CacheがRSCのモデルに組み込まれた
+関数やコンポーネントがCache可能
 
 <div class="flex justify-center mt-10">
   <img src="/cache-components-architecture.png" alt="Cache Components" class="h-80">
 </div>
-
----
-
-# 余談: Pages RouterとTanStack Start
-
-これらはどちらも中央集権的なモデル
-
-- `getServerSideProps()`相当が`loader()`+`createServerFn()`
-- TanStack Startの方がPages Routerより後発な分、洗練された開発者体験と言える
-  - `createServerFn()`はServer Functions相当
-  - `createServerOnlyFn()`や`<ClientOnly>`など、Next.jsにはない機能群
 
 ---
 layout: section
@@ -397,7 +449,7 @@ section -1
 
 Next.jsはエンドユーザーと開発者、どちらの要求にも応えようとしている
 
-- Next.jsは『普遍性』と『大胆な進化』という要求を満たすべく、以下の戦略を取っている
+- Next.jsは『安定性』と『大胆な進化』という要求を満たすべく、以下の戦略を取っている
   - 『最小限の破壊的変更』
   - 『慎重な抽象化』
   - 『新規設計の分離』
