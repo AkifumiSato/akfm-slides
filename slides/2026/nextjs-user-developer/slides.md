@@ -288,8 +288,8 @@ layout: statement
 デフォルト通り実装すれば、高いパフォーマンスが得られる
 
 1. Pages Router時代: SSR、コードスプリッティング
-2. App Router時代: RSC、Cache by default、Prefetching
-3. Cache Components時代: Instant Navigations（PPR、Cache、Streaming）
+2. App Router時代: RSC、Cache by default、Streaming
+3. Cache Components時代: Instant Navigations（PPR、Cache、Prefetching）
 
 ---
 
