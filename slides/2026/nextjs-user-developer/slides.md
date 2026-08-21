@@ -194,7 +194,7 @@ Next.jsではAPIの破壊的変更を基本避けてる
 
 - 当初からある`getInitialProps()`は最新版（v16.3）でも動く
 - v15.0であった`cookies()`や`params`などの非同期化くらい（codemodあり）
-- v14前後は「意図せぬ破壊的変更（バグ）」が多かったが、LTS導入やプロセス変更で改善された
+- v14前後までは「意図せぬ破壊的変更（バグ）」が多かったが、LTS導入やプロセス変更で改善された
 
 ---
 
@@ -288,7 +288,7 @@ layout: statement
 デフォルト通り実装すれば、高いパフォーマンスが得られる
 
 1. Pages Router時代: SSR、コードスプリッティング
-2. App Router時代: RSC、Cache by default、Streaming SSR
+2. App Router時代: RSC、Cache by default、Prefetching
 3. Cache Components時代: Instant Navigations（PPR、Cache、Streaming）
 
 ---
@@ -386,7 +386,7 @@ section 4
 
 歴史を重ねることで、Pages Routerの設計では限界があることがわかってきた
 
-1. Pages Router: 実行環境の見通しが良い<span v-mark="{ color: 'red' }" class="font-bold">レイヤー指向</span>なモデル
+1. Pages Router: Server/Clientの見通しが良い<span v-mark="{ color: 'red' }" class="font-bold">レイヤー指向</span>なモデル
 2. App Router: データ依存関係の見通しが良い<span v-mark="{ color: 'red' }" class="font-bold">コロケーション指向</span>なモデル
 3. App Router(Cache Components): 合成可能でOpt-inなCache
 
@@ -394,7 +394,7 @@ section 4
 
 # Pages Router: レイヤー指向なモデル
 
-実行環境の見通しは良いが、バケツリレーになる
+Server/Clientの見通しは良いが、バケツリレーになる
 
 <div class="flex justify-center">
   <img src="/pages-router-architecture.png" alt="Pages Router" class="h-100">
@@ -455,6 +455,6 @@ Next.jsはエンドユーザーと開発者、どちらの要求にも応えよ�
   - 『新規設計の分離』
 - Next.jsのコンセプト: 「デフォルトで高いパフォーマンス・優れた開発者体験」
 - Next.jsのモデルはApp Routerで大きく変わった
-  - Pages Router: 中央集権的なモデル
-  - App Router: 自律分散的なモデル
-  - App Router(Cache Components): Cache含め自律分散的なモデル
+  - Pages Router: レイヤー指向なモデル
+  - App Router: コロケーション指向なモデル
+  - App Router(Cache Components): 合成可能でOpt-inなCache
