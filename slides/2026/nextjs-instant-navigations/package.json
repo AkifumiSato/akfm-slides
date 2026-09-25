@@ -1,0 +1,10 @@
+{
+  "name": "nextjs-instant-navigations",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build --base /akfm-slides/2026/nextjs-instant-navigations/",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  }
+}
