@@ -14,9 +14,29 @@ routerMode: hash
 mdc: true
 ---
 
-# Next.js<br>**Instant** Navigations
+# Next.js<br><span class="instant-title">Instant</span> Navigations
 
 JavaScriptによるWeb Navigationチューニングの歴史と最高到達点
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.instant-title {
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: underline;
+  background: linear-gradient(90deg, #ff6ec4, #7873f5, #4fd1c5, #ff6ec4);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: instant-shine 10s linear infinite;
+}
+
+@keyframes instant-shine {
+  to { background-position: 300% 0; }
+}
+</style>
 
 ---
 
@@ -68,7 +88,7 @@ layout: fact
 layout: section
 ---
 
-section 1:
+section 1
 
 # Navigation最適化の歴史
 
@@ -131,17 +151,6 @@ section 1:
 - 以前としてSSR or SSGどちらにすべきかは開発者に委ねられた
 
 ---
-
-# PPR(Partial Pre-Rendering)
-
-2023年、PPRの発表
-
-- 1つのページ内で外側を静的に・部分的に動的にという構成が可能に
-  - SSG/SSR論争に終止符
-  - 理論上非常に高速だと思われる
-- 従来のページ志向なアーキテクチャではキャッシュの内部活用が非効率だが、改善は困難だった
-
----
 layout: fact
 ---
 
@@ -151,12 +160,89 @@ layout: fact
 layout: section
 ---
 
-section 2:
+section 2
 
 # Instant Navigations
 
 ---
+
+# Instant Navigationsとは
+
+Instant Navigations=瞬時のNavigation
+
+- Navigation"s"=Hard Navigation, Soft Navigation
+- Next.jsのCache Componentsで提唱されたコンセプト（next@17でデフォルトに）
+
+ref: https://x.com/aurorascharff/status/2107837635792146621
+
+---
+layout: fact
+---
+
+## Instant Navigationsを構成する技術的要素は大きく３つ
+
+---
+
+# PPR(Partial Pre-Rendering)
+
+静的レンダリングの活用による高速化
+
+ページの外側を静的に・部分的に動的にレンダリング
+
+<div class="flex justify-center mt-10">
+  <img src="/ppr.png" alt="PPR">
+</div>
+
+---
+transition: fade
+---
+
+# Cache戦略
+
+Cache活用による高速化
+
+- `"use cache"`でコンポーネントや関数のキャッシュ可能を宣言
+- Opt-in型なRSCの拡張設計、**開発者体験をトレードオフにしない**
+- `cacheLife(profile)`や`cacheTag(tagName)`などでCacheの寿命を制御
+
+---
+transition: fade
+---
+
+# Cache戦略
+
+Cache活用による高速化
+
+<div class="flex justify-center mt-10">
+  <img src="/rsc-doors.png" alt="RSC" class="h-80">
+</div>
+
+---
+
+# Cache戦略
+
+Cache活用による高速化
+
+<div class="flex justify-center mt-10">
+  <img src="/cache-doors.png" alt="Next.js Cache Door" class="h-80">
+</div>
+
+---
+
+# Prefetch戦略
+
+Prefetchによる高速化
+
+- 静的な部分・Cache部分はPrefetchしてもサーバー負荷にならない（なりづらい）
+- `partialPrefetching`と呼ばれる、細粒度なPrefetch戦略
+  - 細かくすることでprefetchの無駄を防ぐ
+
+TBW: Linkやawait prefetchの実装例
+
+---
+
 layout: section
+
 ---
 
 # End
