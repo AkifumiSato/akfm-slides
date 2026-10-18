@@ -131,18 +131,12 @@ section 1
 </div>
 
 ---
-layout: fact
----
-
-## 2026年、Instant Navigationsへ...
-
----
 layout: section
 ---
 
 section 2
 
-# Instant Navigations
+# Partial Pre-Rendering
 
 ---
 
@@ -150,11 +144,150 @@ section 2
 
 最適解と手段がケースバイケース
 
-- 前提: 完全に静的化できるならそれが最適
-- 課題
-  - 静的か動的かで実装方法が異なる
-  - その時は良くても恒久的に静的にできるとは限らない
-  - 開発者側に高度な理解と判断が求められた
+| 手法          | 解決した問題                           | トレードオフ                       |
+| ------------- | -------------------------------------- | ---------------------------------- |
+| Classic SSR   | -                                      | 画面遷移のたびにフルリロードが走る |
+| SPA           | 画面遷移のフルリロード、関心ごとの分離 | LCPが低速、SEOやセキュリティが弱い |
+| SSR           | SPAのLCP課題・SEO                      | TTFBが遅くなりがち                 |
+| SSG           | SSRのTTFBやセキュリティ                | Webアプリケーションには不向き      |
+| Streaming SSR | SSRのTTFBとLCPの両立                   | CDN活用が困難                      |
+
+---
+
+# SSG vs Streaming SSR
+
+これらの分断は大きかった
+
+| 観点            | SSG | Streaming SSR |
+| --------------- | --- | ------------- |
+| 動的コンテンツ  | ❌  | ✅            |
+| TTFB（CDN活用） | ✅  | ❌            |
+| LCP             | ✅  | ✅            |
+
+---
+layout: fact
+---
+
+## Next.jsのコンセプト<br>_「デフォルトで高いパフォーマンス、優れた開発者体験」_
+
+---
+layout: fact
+---
+
+## App Router初期の思想<br>「できるだけSSGに、Opt-inでStreaming SSRに」
+
+---
+
+# App Router初期の苦悩
+
+分断したソリューションと「デフォルトで高いパフォーマンス」の掛け合わせによる破綻
+
+- Cacheがデフォルトで有効＆暗黙的で認知負荷が高い
+- ドキュメントの不足
+- devモードとproductionで挙動が違う
+- アプリケーションではほとんどのページをOpt-inしないといけない
+- etc...
+
+---
+layout: fact
+---
+
+## 分断したソリューションではなく<br>バランスの取れるソリューションが必要
+
+---
+layout: fact
+---
+
+## SSGとStreaming SSRのいいとこ取りをしたい
+
+---
+transition: fade
+---
+
+# Partial Pre-Rendering(PPR)
+
+静的レンダリングの活用による高速化
+
+ページの外側を静的に・部分的に動的にレンダリング
+
+<div class="flex justify-center mt-10">
+  <img src="/ppr.png" alt="PPR">
+</div>
+
+---
+transition: fade
+---
+
+# Partial Pre-Rendering(PPR)
+
+静的レンダリングの活用による高速化
+
+開発者は動的な要素を`<Suspense>`で囲うだけ
+
+```tsx
+export function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  return (
+    <div>
+      <Suspense fallback={<ProductHeroSkeleton />}>
+        <ProductSummary params={params} />
+      </Suspense>
+      <RecommendationsSection>
+        <Suspense fallback={<RecommendationsSkeleton />}>
+          <ProductRecommendations params={params} />
+        </Suspense>
+      </RecommendationsSection>
+    </div>
+  );
+}
+```
+
+---
+
+# Partial Pre-Rendering(PPR)
+
+静的レンダリングの活用による高速化
+
+| 観点            | PPR | SSG | Streaming SSR |
+| --------------- | --- | --- | ------------- |
+| 動的コンテンツ  | ✅  | ❌  | ✅            |
+| TTFB（CDN活用） | ✅  | ✅  | ❌            |
+| LCP             | ✅  | ✅  | ✅            |
+
+---
+
+# PPRのトレードオフ
+
+PPRもまた、銀の弾丸ではない
+
+- （おそらく）Next.jsしかサポートしてない
+- フレームワーク側の実装が複雑
+- CDNを活用するにはプラットフォーム側のサポートが必要
+
+---
+layout: fact
+---
+
+## PPRでNavigation最適化はさらに進化した
+
+---
+layout: fact
+---
+
+## これで完璧？<br>→No
+
+---
+layout: fact
+---
+
+## PPRをベースにNavigationsのさらに最適化へ
+
+---
+layout: section
+---
+
+section 3
+
+# Instant Navigations
 
 ---
 
@@ -162,10 +295,31 @@ section 2
 
 Instant Navigations=瞬時のNavigation
 
+- Next.jsのCache Componentsに含まれる機能群（next@17でデフォルトに）
 - Navigation"s"=Hard Navigation, Soft Navigation
-- Next.jsのCache Componentsで提唱されたコンセプト（next@17でデフォルトに）
+- PPR+Cache+Prefetchにより、高速なNavigationを実現
 
 ref: https://x.com/aurorascharff/status/2107837635792146621
+
+---
+layout: fact
+---
+
+## SSGとStreaming SSRのいいとこ取りをした上で<br>さらに全体を最適化した
+
+---
+layout: fact
+---
+
+## Navigation最適化の『最高到達点』
+
+---
+layout: fact
+---
+
+## [Demo](https://nextjs-cache-components-demo.vercel.app/instant-navigations)
+
+https://github.com/AkifumiSato/nextjs-cache-components-demo
 
 ---
 
@@ -176,6 +330,8 @@ PPR + Cache + Prefetch
 <div class="flex justify-center mt-6">
   <img src="/instant-navigations.svg" alt="Instant Navigations" class="h-90">
 </div>
+
+Todo: Cache, Prefetch追記、PPRの図も作成
 
 ---
 layout: fact
@@ -220,6 +376,8 @@ Cache活用による高速化
 </div>
 
 ---
+transition: fade
+---
 
 # Cache戦略
 
@@ -231,53 +389,115 @@ Cache活用による高速化
 
 ---
 
+# Cache戦略
+
+Cache活用による高速化
+
+```tsx
+// Component Level Cache
+async function Cached() {
+  "use cache";
+
+  return <>...</>;
+}
+
+// Function Level Cache
+export async function getProduct(id: string) {
+  "use cache";
+
+  cacheLife("hours");
+  cacheTag(`products/${id}`);
+
+  return fetchProduct(id);
+}
+```
+
+---
+transition: fade
+---
+
+# Prefetch戦略
+
+`partialPrefetching`と呼ばれる、細粒度なPrefetch戦略
+
+- 静的な部分・Cache部分はPrefetchしてもサーバー負荷にならない（なりづらい）
+- `await prefetch()`や`await prefetch()`により、Prefetch時のレンダリングを細かく制御できる
+
+---
+
 # Prefetch戦略
 
 Prefetchによる高速化
 
-- 静的な部分・Cache部分はPrefetchしてもサーバー負荷にならない（なりづらい）
-- `partialPrefetching`と呼ばれる、細粒度なPrefetch戦略
-  - 細かくすることでprefetchの無駄を防ぐ
+```tsx
+import { navigation, prefetch } from "next/cache";
 
-TBW: Linkやawait prefetchの実装例
+// Until Prefetching
+async function ProductStock({ id }: { id: string }) {
+  await prefetch();
+
+  return <StockView stock={await getStock(id)} />;
+}
+
+// Until Navigation
+async function ProductRecommendations({ id }: { id: string }) {
+  await navigation();
+
+  return <RecommendationsView recommendations={await getRecommendations(id)} />;
+}
+```
 
 ---
 
-layout: section
+# Instant NavigationsのOpt-out
 
+Githubのように、ページアクセス時点で認可チェックなどしたいこともある
+
+Route Segment ConfigでOpt-out可能
+
+```tsx
+// page.tsx or layout.tsx
+export const instant = false;
+```
+
+---
+layout: section
+---
+
+section -1
+
+# Outro&Message
+
+---
+
+# Instant Navigations
+
+Navigation最適化の歴史が紡いだバランスソリューション
+
+- SSGとStreaming SSRのいいところどりをしたPPRがベース
+- PPR+Cache+Prefetchを統合してHard/Soft Navigationを最適化
+- 「_デフォルトで高いパフォーマンス、優れた開発者体験_」と呼ぶに相応しい設計
+
+---
+layout: fact
+---
+
+## AI時代だからこそ<br>我々開発者は今まで以上にUXと向き合うべきである
+
+---
+layout: fact
+---
+
+## Instant Navigationsは<br>今我々が向き合う最も重要なテーマの1つ
+
+---
+layout: fact
+---
+
+## 各々がより良いNavigationを考えることが重要
+
+---
+layout: section
 ---
 
 # End
-
----
-
-# memo
-
-- Instant Navigations(10m)
-  - メモ: デモ作ってナビゲーションを比較しても良いかも
-  - Motivation
-    - 従来のSPA相当のソフトナビゲーション体験
-    - ハードナビゲーション時はStreaming SSR
-    - ハード・ソフトナビゲーションどちらでも高いパフォーマンス体験
-  - 定義
-    - Cache Componentsで実現される機能名称
-      - PPR,use cache,dynamicIOの統合
-    - 一応オプトアウトが可能
-    - demo挟む(プロダクトページのサンプル作る)
-  - Prefetch App Shell
-    - App Shellはstaticなのでprefetchしまくれる
-    - 並列に多数リクエスト走る(メリデメあり)
-  - Streaming
-    - 1HTTPリクエストで完結する
-    - Astroとかとは違う
-  - Caching
-    - App Shell(use cacheが含まれる)
-    - 末端もキャッシュ可能
-    - use cache remoteとか色々、高度なオプションもある
-- 考察: Instant NavigationsはNext.jsらしい(3m)
-  - デフォルトで高いパフォーマンス、優れた開発者体験
-  - (過去の機能との比較など)
-- トレードオフ(2m)
-  - Vercelのアーキテクチャを模倣しないと、パフォーマンスは再現が難しい
-  - 他フレームワークの追従が困難(差別化とも言える)
-- まとめ(2m)
