@@ -64,19 +64,7 @@ JavaScriptによるWeb Navigationチューニングの歴史と最高到達点
 layout: fact
 ---
 
-## Next.js <span v-mark="{ color: 'red', type: 'underline' }">Instant</span> Navigations
-
----
-layout: fact
----
-
-## _瞬時のNavigation_
-
----
-layout: fact
----
-
-## Instant Navigations:<br>Next.jsのコンセプトや機能群を意味する
+## _Next.js <span v-mark="{ color: 'red', type: 'circle' }">Instant</span> Navigations_
 
 ---
 layout: fact
@@ -94,61 +82,53 @@ section 1
 
 ---
 
-# クラシックSSR
+# Classic SSR
 
-〜2010年代前半
+〜2010年代前半: フレームワークや言語が様々選べた時代
 
-- サーバー側でページをレンダリングするのみ
-- JSP(Java), PHP, Ruby on Rails, etc...
-- JavaScriptは最小限にして、一部装飾のために使う程度
+<div class="flex justify-center mt-6">
+  <img src="/classic-ssr.svg" alt="クラシックSSR" class="h-90">
+</div>
 
 ---
 
 # SPA(Single Page Application)
 
-2010年代半ば〜
+2010年代半ば〜: バックエンドAPIを分離してクライアントはReactやVue
 
-- JavaScriptの進化
-- ネイティブアプリの出現も相まったバックエンドAPI分離の流れ
-- 様々なトレードオフ
-  - Hard Navigation問題
-  - セキュリティ問題
-  - エコシステムの未成熟
-  - etc...
+<div class="flex justify-center mt-6">
+  <img src="/spa.svg" alt="SPA" class="h-90">
+</div>
 
 ---
 
 # SSR(Server Side Rendering)
 
-2016年、Next.js Pages Routerの登場
+2016年頃: ReactやVueでSSR
 
-- Hard Navigation問題を高速化
-- Server Centric回帰
-- 代わりに、Soft Navigationが少し遅くなった
-  - クラシックSSR < SSR < SPA
+<div class="flex justify-center mt-6">
+  <img src="/ssr.svg" alt="SSR" class="h-90">
+</div>
 
 ---
 
 # SSG(Static Site Generation)
 
-2018年頃、Gatsby.jsの台頭（2018年頃）
+2018年頃: 「SSRが遅い」を解決する手段としての静的化
 
-- 静的化することでSPA, SSRの問題の多くを解決
-  - 高速なHard Navigation/Soft Navigation
-  - フロントエンド側のセキュリティ向上
-  - データフェッチライフサイクルの定義
-- しかし、現実的なWebアプリケーションには向かないアーキテクチャだった
+<div class="flex justify-center mt-6">
+  <img src="/ssg.svg" alt="SSG" class="h-90">
+</div>
 
 ---
 
 # Streaming SSR
 
-2022年、Next.js App Routerの登場
+2022年頃: HTTP Streamingの活用
 
-- Hard Navigation/Soft NavigationをStreaming対応
-  - UIの段階的表示が簡単に実装できるようになった
-  - Next.js+SWRで行うパフォーマンス最適化などが不要に
-- 以前としてSSR or SSGどちらにすべきかは開発者に委ねられた
+<div class="flex justify-center mt-6">
+  <img src="/streaming-ssr.svg" alt="Streaming SSR" class="h-90">
+</div>
 
 ---
 layout: fact
@@ -166,6 +146,18 @@ section 2
 
 ---
 
+# 従来のNavigation最適化の課題
+
+最適解と手段がケースバイケース
+
+- 前提: 完全に静的化できるならそれが最適
+- 課題
+  - 静的か動的かで実装方法が異なる
+  - その時は良くても恒久的に静的にできるとは限らない
+  - 開発者側に高度な理解と判断が求められた
+
+---
+
 # Instant Navigationsとは
 
 Instant Navigations=瞬時のNavigation
@@ -174,6 +166,16 @@ Instant Navigations=瞬時のNavigation
 - Next.jsのCache Componentsで提唱されたコンセプト（next@17でデフォルトに）
 
 ref: https://x.com/aurorascharff/status/2107837635792146621
+
+---
+
+# Instant Navigations
+
+PPR + Cache + Prefetch
+
+<div class="flex justify-center mt-6">
+  <img src="/instant-navigations.svg" alt="Instant Navigations" class="h-90">
+</div>
 
 ---
 layout: fact
