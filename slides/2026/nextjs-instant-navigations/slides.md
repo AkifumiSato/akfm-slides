@@ -206,12 +206,10 @@ transition: fade
 
 # Partial Pre-Rendering(PPR)
 
-静的レンダリングの活用による高速化
-
 ページの外側を静的に・部分的に動的にレンダリング
 
 <div class="flex justify-center mt-10">
-  <img src="/ppr.png" alt="PPR">
+  <img src="/ppr.svg" alt="PPR" class="h-90">
 </div>
 
 ---
@@ -331,8 +329,6 @@ PPR + Cache + Prefetch
   <img src="/instant-navigations.svg" alt="Instant Navigations" class="h-90">
 </div>
 
-Todo: Cache, Prefetch追記、PPRの図も作成
-
 ---
 layout: fact
 ---
@@ -347,8 +343,8 @@ layout: fact
 
 ページの外側を静的に・部分的に動的にレンダリング
 
-<div class="flex justify-center mt-10">
-  <img src="/ppr.png" alt="PPR">
+<div class="flex justify-center mt-6">
+  <img src="/ppr.svg" alt="PPR" class="h-90">
 </div>
 
 ---
