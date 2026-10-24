@@ -9,14 +9,14 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: Next.js Instant Navigations - JavaScriptによるNavigationチューニングの歴史と最高到達点
+title: Next.js Instant Navigations - Navigation最適化の最高到達点
 routerMode: hash
 mdc: true
 ---
 
 # Next.js<br><span class="instant-title">Instant</span> Navigations
 
-JavaScriptによるNavigationチューニングの歴史と最高到達点
+Navigation最適化の最高到達点
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -64,13 +64,13 @@ JavaScriptによるNavigationチューニングの歴史と最高到達点
 layout: fact
 ---
 
-## _Next.js <span v-mark="{ color: 'red', type: 'circle' }">Instant</span> Navigations_
+## _Next.js <span v-mark="{ color: 'red', type: 'underline' }">Instant</span> Navigation<span v-mark="{ color: 'orange', type: 'circle' }">s</span>_
 
 ---
 layout: fact
 ---
 
-## なぜInstant Navigationsが『最高到達点』なのか？<br>今までと何が違うのか？
+## なぜ『最高到達点』なのか？
 
 ---
 layout: section
@@ -78,18 +78,22 @@ layout: section
 
 section 1
 
-# Navigation最適化の歴史
+# Navigation"s"
 
 ---
 
-# Hard Navigation / Soft Navigation
+# Navigation"s"
 
 SPAの登場以降、WebのNavigationには2つの方式が存在する
 
 - **Hard Navigation**: ブラウザ標準の仕組みでドキュメント全体を読み直すNavigation
 - **Soft Navigation**: History API等を利用して、必要な部分だけJavaScriptで差し替えるNavigation
 
-Soft Navigation登場以降、Navigation最適化＝<span class="font-bold" v-mark="{ type: 'underline', color: 'red' }">レンダリング戦略の最適化そのもの</span>
+---
+layout: fact
+---
+
+## Navigationの最適化＝<span v-mark="{ type: 'underline', color: 'red' }">レンダリング戦略の最適化</span>
 
 ---
 
@@ -142,20 +146,12 @@ Soft Navigation登場以降、Navigation最適化＝<span class="font-bold" v-ma
 </div>
 
 ---
-layout: section
----
 
-section 2
-
-# Partial Pre-Rendering
-
----
-
-# 従来のNavigation最適化の課題
+# レンダリング戦略ごとの課題解決
 
 最適解と手段がケースバイケース
 
-| 手法          | 解決した問題                           | トレードオフ                       |
+| 手法          | 解決した課題                           | トレードオフ                       |
 | ------------- | -------------------------------------- | ---------------------------------- |
 | Classic SSR   | -                                      | 画面遷移のたびにフルリロードが走る |
 | SPA           | 画面遷移のフルリロード、関心ごとの分離 | LCPが低速、SEOやセキュリティが弱い |
@@ -165,7 +161,7 @@ section 2
 
 ---
 
-# SSG vs Streaming SSR
+# 最適解: SSG or Streaming SSR
 
 これらの分断は大きかった
 
@@ -174,6 +170,14 @@ section 2
 | 動的コンテンツ  | ❌  | ✅            |
 | TTFB（CDN活用） | ✅  | ❌            |
 | LCP             | ✅  | ✅            |
+
+---
+layout: section
+---
+
+section 2
+
+# Next.js App Router
 
 ---
 layout: fact
@@ -188,8 +192,10 @@ layout: fact
 ## App Router初期の思想<br>「できるだけSSGに、Opt-inでStreaming SSRに」
 
 ---
+transition: fade
+---
 
-# App Router初期の苦悩
+# App Routerの不評
 
 分断したソリューションと「デフォルトで高いパフォーマンス」の掛け合わせによる破綻
 
@@ -200,16 +206,23 @@ layout: fact
 - etc...
 
 ---
-layout: fact
+
+# App Routerの不評
+
+私見: RSCとページ単位の思想がそもそも相性がよくなかった
+
+- RSC: サーバー処理レベルでコンポーネント志向
+- 従来のレンダリング戦略: アプリケーションやページ単位で考えるもの
+
+RSCと親和性が高い、<span class="font-bold" v-mark="{ type: 'underline', color: 'red' }">より細粒度なレンダリング戦略</span>が必要
+
+---
+layout: section
 ---
 
-## 分断したソリューションではなく<br>バランスの取れるソリューションが必要
+section 3
 
----
-layout: fact
----
-
-## SSGとStreaming SSRのいいとこ取りをしたい
+# Partial Pre-Rendering
 
 ---
 transition: fade
@@ -292,7 +305,7 @@ layout: fact
 layout: section
 ---
 
-section 3
+section 4
 
 # Instant Navigations
 
@@ -318,7 +331,7 @@ layout: fact
 layout: fact
 ---
 
-## Navigation最適化の『最高到達点』
+## Navigation"s"最適化の『最高到達点』
 
 ---
 layout: fact
@@ -332,21 +345,11 @@ https://github.com/AkifumiSato/nextjs-cache-components-demo
 
 # Instant Navigations
 
-PPR + Cache + Prefetch
+PPRをベースにCache + Prefetchで全体をさらに最適化
 
 <div class="flex justify-center mt-6">
   <img src="/instant-navigations.svg" alt="Instant Navigations" class="h-90">
 </div>
-
----
-
-# 技術的要素
-
-Instant Navigationsを構成する技術的要素は大きく3つ
-
-- **PPR**
-- **Cache戦略**
-- **Prefetch戦略**
 
 ---
 transition: fade
@@ -463,37 +466,30 @@ export const instant = false;
 layout: section
 ---
 
-section 4
+section 5
 
 # Outro&Message
 
 ---
 
-# Instant Navigations
+# Outro: Instant Navigations
 
-Navigation最適化の歴史が紡いだバランスソリューション
+Hard Navigation, Soft Navigationどちらも高速にする最高到達点
 
 - SSGとStreaming SSRのいいところどりをしたPPRがベース
 - PPR+Cache+Prefetchを統合してHard/Soft Navigationを最適化
 - 「_デフォルトで高いパフォーマンス、優れた開発者体験_」と呼ぶに相応しい設計
+- トレードオフはフレームワーク側の複雑性
 
 ---
-layout: fact
----
 
-## AI時代だからこそ<br>我々開発者は今まで以上にUXと向き合うべきである
+# 最後に: AI時代だからこそ理解すべきこと
 
----
-layout: fact
----
+AI時代だからこそ、Instant Navigationsの話をしたかった
 
-## Instant Navigationsは<br>今我々が向き合う最も重要なテーマの1つ
-
----
-layout: fact
----
-
-## 各々がより良いNavigationを考えることが重要
+- AI時代だからこそ、我々開発者は今まで以上にUXと向き合うべきである
+- Instant Navigationsは今我々が向き合う最も重要なテーマの1つ
+- 各々がより良いNavigationを考えることが重要
 
 ---
 layout: section
@@ -503,10 +499,6 @@ layout: section
 
 ---
 
-# 修正点Memo
+# Memo
 
-- turbo linkなどとの比較について
-- 最高到達点の伏線回収
-- Static/Dynamic,Hard/Soft両立が課題だったことを書きたい
-- 冒頭に前提知識の補足を入れたい
-- 最後OutroとMessageでそれぞれ1枚づつにまとめたい
+- Cache,PrefetchによりNavigationのボトルネックに対処してること、TTFBは理論値であることを図で示したい。
