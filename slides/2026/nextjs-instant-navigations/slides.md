@@ -9,14 +9,14 @@ colorSchema: "dark"
 drawings:
   persist: false
 transition: slide-left
-title: Next.js Instant Navigations - JavaScriptによるWeb Navigationチューニングの歴史と最高到達点
+title: Next.js Instant Navigations - JavaScriptによるNavigationチューニングの歴史と最高到達点
 routerMode: hash
 mdc: true
 ---
 
 # Next.js<br><span class="instant-title">Instant</span> Navigations
 
-JavaScriptによるWeb Navigationチューニングの歴史と最高到達点
+JavaScriptによるNavigationチューニングの歴史と最高到達点
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -79,6 +79,17 @@ layout: section
 section 1
 
 # Navigation最適化の歴史
+
+---
+
+# Hard Navigation / Soft Navigation
+
+SPAの登場以降、WebのNavigationには2つの方式が存在する
+
+- **Hard Navigation**: ブラウザ標準の仕組みでドキュメント全体を読み直すNavigation
+- **Soft Navigation**: History API等を利用して、必要な部分だけJavaScriptで差し替えるNavigation
+
+Soft Navigation登場以降、Navigation最適化＝<span class="font-bold" v-mark="{ type: 'underline', color: 'red' }">レンダリング戦略の最適化そのもの</span>
 
 ---
 
@@ -218,8 +229,6 @@ transition: fade
 
 # Partial Pre-Rendering(PPR)
 
-静的レンダリングの活用による高速化
-
 開発者は動的な要素を`<Suspense>`で囲うだけ
 
 ```tsx
@@ -243,7 +252,7 @@ export function ProductPage({ params }: { params: Promise<{ id: string }> }) {
 
 # Partial Pre-Rendering(PPR)
 
-静的レンダリングの活用による高速化
+SSGやStreaming SSRのいいとこどり
 
 | 観点            | PPR | SSG | Streaming SSR |
 | --------------- | --- | --- | ------------- |
@@ -291,11 +300,11 @@ section 3
 
 # Instant Navigationsとは
 
-Instant Navigations=瞬時のNavigation
+Instant Navigations = 瞬時の Navigation
 
 - Next.jsのCache Componentsに含まれる機能群（next@17でデフォルトに）
-- Navigation"s"=Hard Navigation, Soft Navigation
-- PPR+Cache+Prefetchにより、高速なNavigationを実現
+- **Hard / Soft Navigation** の両方を最適化
+- PPR + Cache + Prefetch により、高速な Soft Navigation を実現
 
 ref: https://x.com/aurorascharff/status/2107837635792146621
 
@@ -330,22 +339,14 @@ PPR + Cache + Prefetch
 </div>
 
 ---
-layout: fact
----
 
-## Instant Navigationsを構成する技術的要素は大きく３つ
+# 技術的要素
 
----
+Instant Navigationsを構成する技術的要素は大きく3つ
 
-# PPR(Partial Pre-Rendering)
-
-静的レンダリングの活用による高速化
-
-ページの外側を静的に・部分的に動的にレンダリング
-
-<div class="flex justify-center mt-6">
-  <img src="/ppr.svg" alt="PPR" class="h-90">
-</div>
+- **PPR**
+- **Cache戦略**
+- **Prefetch戦略**
 
 ---
 transition: fade
@@ -355,8 +356,8 @@ transition: fade
 
 Cache活用による高速化
 
-- `"use cache"`でコンポーネントや関数のキャッシュ可能を宣言
-- Opt-in型なRSCの拡張設計、**開発者体験をトレードオフにしない**
+- `"use cache"`でコンポーネントや関数のキャッシュを宣言
+- Opt-in 型の RSC の拡張設計、**開発者体験をトレードオフにしない**
 - `cacheLife(profile)`や`cacheTag(tagName)`などでCacheの寿命を制御
 
 ---
@@ -365,10 +366,10 @@ transition: fade
 
 # Cache戦略
 
-Cache活用による高速化
+RSCにおいてディレクティブはServer/Clientのドアの役割
 
 <div class="flex justify-center mt-10">
-  <img src="/rsc-doors.png" alt="RSC" class="h-80">
+  <img src="/rsc-doors.png" alt="RSC" class="h-72">
 </div>
 
 ---
@@ -377,17 +378,17 @@ transition: fade
 
 # Cache戦略
 
-Cache活用による高速化
+`"use cache"`はCacheへのドア
 
 <div class="flex justify-center mt-10">
-  <img src="/cache-doors.png" alt="Next.js Cache Door" class="h-80">
+  <img src="/cache-doors.png" alt="Next.js Cache Door" class="h-72">
 </div>
 
 ---
 
 # Cache戦略
 
-Cache活用による高速化
+実装イメージ
 
 ```tsx
 // Component Level Cache
@@ -417,13 +418,15 @@ transition: fade
 `partialPrefetching`と呼ばれる、細粒度なPrefetch戦略
 
 - 静的な部分・Cache部分はPrefetchしてもサーバー負荷にならない（なりづらい）
-- `await prefetch()`や`await prefetch()`により、Prefetch時のレンダリングを細かく制御できる
+- Prefetch時のレンダリングを細かく制御できる
+  - `await prefetch()`
+  - `await navigation()`
 
 ---
 
 # Prefetch戦略
 
-Prefetchによる高速化
+prefetch時にどこまでレンダリングするか細かく制御できる
 
 ```tsx
 import { navigation, prefetch } from "next/cache";
@@ -447,7 +450,7 @@ async function ProductRecommendations({ id }: { id: string }) {
 
 # Instant NavigationsのOpt-out
 
-Githubのように、ページアクセス時点で認可チェックなどしたいこともある
+GitHubのように、ページアクセス時点で認可チェックなどしたいこともある
 
 Route Segment ConfigでOpt-out可能
 
@@ -460,7 +463,7 @@ export const instant = false;
 layout: section
 ---
 
-section -1
+section 4
 
 # Outro&Message
 
@@ -497,3 +500,13 @@ layout: section
 ---
 
 # End
+
+---
+
+# 修正点Memo
+
+- turbo linkなどとの比較について
+- 最高到達点の伏線回収
+- Static/Dynamic,Hard/Soft両立が課題だったことを書きたい
+- 冒頭に前提知識の補足を入れたい
+- 最後OutroとMessageでそれぞれ1枚づつにまとめたい
