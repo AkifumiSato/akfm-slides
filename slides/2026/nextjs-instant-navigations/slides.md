@@ -265,7 +265,7 @@ export function ProductPage({ params }: { params: Promise<{ id: string }> }) {
 
 # Partial Pre-Rendering(PPR)
 
-SSGやStreaming SSRのいいとこどり
+SSGやStreaming SSRのいいとこ取り
 
 | 観点            | PPR | SSG | Streaming SSR |
 | --------------- | --- | --- | ------------- |
@@ -279,7 +279,7 @@ SSGやStreaming SSRのいいとこどり
 
 PPRもまた、銀の弾丸ではない
 
-- （おそらく）Next.jsしかサポートしてない
+- （おそらく）Next.jsしかサポートしていない
 - フレームワーク側の実装が複雑
 - CDNを活用するにはプラットフォーム側のサポートが必要
 
@@ -299,7 +299,7 @@ layout: fact
 layout: fact
 ---
 
-## PPRをベースにNavigationsのさらに最適化へ
+## PPRをベースにNavigationsのさらなる最適化へ
 
 ---
 layout: section
@@ -313,11 +313,11 @@ section 4
 
 # Instant Navigationsとは
 
-Instant Navigations = 瞬時の Navigation
+Instant Navigations = 瞬時のNavigation
 
 - Next.jsのCache Componentsに含まれる機能群（next@17でデフォルトに）
-- **Hard / Soft Navigation** の両方を最適化
-- PPR + Cache + Prefetch により、高速な Soft Navigation を実現
+- **Hard / Soft Navigation**の両方を最適化
+- PPR + Cache + Prefetchにより、高速なSoft Navigationを実現
 
 ref: https://x.com/aurorascharff/status/2107837635792146621
 
@@ -352,6 +352,16 @@ PPRをベースにCache + Prefetchで全体をさらに最適化
 </div>
 
 ---
+
+# PPRとInstant Navigations
+
+Prefetchで「通信待ち」を、Cacheで「データ取得」を、クリックより前に解消する
+
+<div class="flex justify-center mt-6">
+  <img src="/ppr-vs-instant-navigations.svg" alt="PPR vs Instant Navigations" class="h-90">
+</div>
+
+---
 transition: fade
 ---
 
@@ -359,8 +369,8 @@ transition: fade
 
 Cache活用による高速化
 
-- `"use cache"`でコンポーネントや関数のキャッシュを宣言
-- Opt-in 型の RSC の拡張設計、**開発者体験をトレードオフにしない**
+- `"use cache"`でコンポーネントや関数のCacheを宣言
+- Opt-in型のRSCの拡張設計、**開発者体験をトレードオフにしない**
 - `cacheLife(profile)`や`cacheTag(tagName)`などでCacheの寿命を制御
 
 ---
@@ -429,7 +439,7 @@ transition: fade
 
 # Prefetch戦略
 
-prefetch時にどこまでレンダリングするか細かく制御できる
+Prefetch時にどこまでレンダリングするか細かく制御できる
 
 ```tsx
 import { navigation, prefetch } from "next/cache";
@@ -468,7 +478,7 @@ layout: section
 
 section 5
 
-# Outro&Message
+# Outro & Message
 
 ---
 
@@ -476,8 +486,8 @@ section 5
 
 Hard Navigation, Soft Navigationどちらも高速にする最高到達点
 
-- SSGとStreaming SSRのいいところどりをしたPPRがベース
-- PPR+Cache+Prefetchを統合してHard/Soft Navigationを最適化
+- SSGとStreaming SSRのいいとこ取りをしたPPRがベース
+- PPR + Cache + Prefetchを統合してHard / Soft Navigationを最適化
 - 「_デフォルトで高いパフォーマンス、優れた開発者体験_」と呼ぶに相応しい設計
 - トレードオフはフレームワーク側の複雑性
 
@@ -496,9 +506,3 @@ layout: section
 ---
 
 # End
-
----
-
-# Memo
-
-- Cache,PrefetchによりNavigationのボトルネックに対処してること、TTFBは理論値であることを図で示したい。
