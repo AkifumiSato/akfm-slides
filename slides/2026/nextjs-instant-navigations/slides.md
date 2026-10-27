@@ -163,15 +163,13 @@ layout: fact
 
 # 最適解: SSG or Streaming SSR
 
-これらの分断は大きかった
+※コンテンツにもよるため、参考比較
 
 | 観点            | SSG | Streaming SSR |
 | --------------- | --- | ------------- |
 | Dynamic Content | ❌  | ✅            |
 | TTFB（CDN活用） | ✅  | ❌            |
 | LCP             | ✅  | ✅            |
-
-※コンテンツにもよるため、上記は参考比較
 
 ---
 layout: section
@@ -199,7 +197,7 @@ transition: fade
 
 # App Routerの不評
 
-分断したソリューションと「デフォルトで高いパフォーマンス」の掛け合わせによる破綻
+「優れた開発者体験」の破綻
 
 - 開発者の認識「デフォルトで動的」 vs Next.js「デフォルトで静的」
 - Cacheがデフォルトで有効＆暗黙的で認知負荷が高い
@@ -254,14 +252,10 @@ export default function ProductPage({
 }) {
   return (
     <div>
-      <Suspense fallback={<ProductHeroSkeleton />}>
-        <ProductSummary params={params} />
+      <ProductInfo params={params} />
+      <Suspense fallback={<RecommendationsSkeleton />}>
+        <ProductRecommendations params={params} />
       </Suspense>
-      <RecommendationsSection>
-        <Suspense fallback={<RecommendationsSkeleton />}>
-          <ProductRecommendations params={params} />
-        </Suspense>
-      </RecommendationsSection>
     </div>
   );
 }
@@ -271,15 +265,13 @@ export default function ProductPage({
 
 # Partial Pre-Rendering(PPR)
 
-SSGやStreaming SSRのいいとこ取り
+※コンテンツにもよるため、参考比較
 
 | 観点            | PPR | SSG | Streaming SSR |
 | --------------- | --- | --- | ------------- |
 | Dynamic Content | ✅  | ❌  | ✅            |
 | TTFB（CDN活用） | ✅  | ✅  | ❌            |
 | LCP             | ✅  | ✅  | ✅            |
-
-※コンテンツにもよるため、上記は参考比較
 
 ---
 
@@ -296,12 +288,6 @@ layout: fact
 ---
 
 ## PPRでNavigation最適化はさらに進化した
-
----
-layout: fact
----
-
-## これで完璧？<br>→No
 
 ---
 
@@ -334,8 +320,6 @@ section 4
 
 - Next.jsのCache Componentsに含まれる機能群（next@17でデフォルトに）
 - PPR + Cache + Prefetchにより、高速なNavigation"s"を実現
-
-ref: https://x.com/aurorascharff/status/2107837635792146621
 
 ---
 layout: fact
@@ -482,7 +466,7 @@ export const instant = false;
 layout: fact
 ---
 
-## Navigation"s"最適化の『最高到達点』
+## Instant Navigations<br>=Navigation"s"最適化の『最高到達点』
 
 ---
 layout: section
