@@ -154,9 +154,9 @@ layout: fact
 | 手法          | 解決した課題                           | トレードオフ                       |
 | ------------- | -------------------------------------- | ---------------------------------- |
 | Classic SSR   | -                                      | 画面遷移のたびにフルリロードが走る |
-| SPA           | 画面遷移のフルリロード、関心ごとの分離 | LCPが低速、SEOやセキュリティが弱い |
-| SSR           | SPAのLCP課題・SEO                      | TTFBが遅くなりがち                 |
-| SSG           | SSRのTTFBやセキュリティ                | Webアプリケーションには不向き      |
+| SPA           | 画面遷移のフルリロード、関心ごとの分離 | LCPが低速、公開APIが必要           |
+| SSR           | SPAのLCP課題や公開API                  | TTFBが遅くなりがち                 |
+| SSG           | SSRのTTFB                              | Webアプリケーションには不向き      |
 | Streaming SSR | SSRのTTFBとLCPの両立                   | CDN活用が困難                      |
 
 ---
@@ -167,9 +167,11 @@ layout: fact
 
 | 観点            | SSG | Streaming SSR |
 | --------------- | --- | ------------- |
-| 動的コンテンツ  | ❌  | ✅            |
+| Dynamic Content | ❌  | ✅            |
 | TTFB（CDN活用） | ✅  | ❌            |
 | LCP             | ✅  | ✅            |
+
+※コンテンツにもよるため、上記は参考比較
 
 ---
 layout: section
@@ -189,7 +191,7 @@ layout: fact
 layout: fact
 ---
 
-## App Router初期の思想<br>「できるだけSSGに、Opt-inでStreaming SSRに」
+## App Router初期の思想<br>「できるだけSSGに、必要に応じてStreaming SSRに」
 
 ---
 transition: fade
@@ -199,10 +201,10 @@ transition: fade
 
 分断したソリューションと「デフォルトで高いパフォーマンス」の掛け合わせによる破綻
 
+- 開発者の認識「デフォルトで動的」 vs Next.js「デフォルトで静的」
 - Cacheがデフォルトで有効＆暗黙的で認知負荷が高い
 - ドキュメントの不足
 - devモードとproductionで挙動が違う
-- アプリケーションではほとんどのページをOpt-inしないといけない
 - etc...
 
 ---
@@ -230,7 +232,7 @@ transition: fade
 
 # Partial Pre-Rendering(PPR)
 
-ページの外側を静的に・部分的に動的にレンダリング
+ページ単位で静的・動的を選ぶのではなく、UI境界ごとに選ぶ形に
 
 <div class="flex justify-center mt-10">
   <img src="/ppr.svg" alt="PPR" class="h-90">
@@ -245,7 +247,11 @@ transition: fade
 開発者は動的な要素を`<Suspense>`で囲うだけ
 
 ```tsx
-export function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+export default function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   return (
     <div>
       <Suspense fallback={<ProductHeroSkeleton />}>
@@ -269,9 +275,11 @@ SSGやStreaming SSRのいいとこ取り
 
 | 観点            | PPR | SSG | Streaming SSR |
 | --------------- | --- | --- | ------------- |
-| 動的コンテンツ  | ✅  | ❌  | ✅            |
+| Dynamic Content | ✅  | ❌  | ✅            |
 | TTFB（CDN活用） | ✅  | ✅  | ❌            |
 | LCP             | ✅  | ✅  | ✅            |
+
+※コンテンツにもよるため、上記は参考比較
 
 ---
 
@@ -279,7 +287,7 @@ SSGやStreaming SSRのいいとこ取り
 
 PPRもまた、銀の弾丸ではない
 
-- （おそらく）Next.jsしかサポートしていない
+- 現状Next.js固有の技術
 - フレームワーク側の実装が複雑
 - CDNを活用するにはプラットフォーム側のサポートが必要
 
@@ -294,6 +302,15 @@ layout: fact
 ---
 
 ## これで完璧？<br>→No
+
+---
+
+# PPRに残る課題
+
+Dynamic Contentが速くなるわけじゃない
+
+- Soft Navigation時に**通信待ち**が発生する
+- Hard / Soft Navigation時に**データ取得待ち**が発生する
 
 ---
 layout: fact
@@ -313,25 +330,12 @@ section 4
 
 # Instant Navigationsとは
 
-Instant Navigations = 瞬時のNavigation
+これまで通り高速なHard Navigation、SPAのような高速なSoft Navigation
 
 - Next.jsのCache Componentsに含まれる機能群（next@17でデフォルトに）
-- **Hard / Soft Navigation**の両方を最適化
-- PPR + Cache + Prefetchにより、高速なSoft Navigationを実現
+- PPR + Cache + Prefetchにより、高速なNavigation"s"を実現
 
 ref: https://x.com/aurorascharff/status/2107837635792146621
-
----
-layout: fact
----
-
-## SSGとStreaming SSRのいいとこ取りをした上で<br>さらに全体を最適化した
-
----
-layout: fact
----
-
-## Navigation"s"最適化の『最高到達点』
 
 ---
 layout: fact
@@ -370,7 +374,7 @@ transition: fade
 Cache活用による高速化
 
 - `"use cache"`でコンポーネントや関数のCacheを宣言
-- Opt-in型のRSCの拡張設計、**開発者体験をトレードオフにしない**
+- Opt-in型のRSCの拡張設計、従来のApp Routerから**開発者体験を改善**
 - `cacheLife(profile)`や`cacheTag(tagName)`などでCacheの寿命を制御
 
 ---
@@ -404,6 +408,8 @@ transition: fade
 実装イメージ
 
 ```tsx
+import { cacheLife, cacheTag } from "next/cache";
+
 // Component Level Cache
 async function Cached() {
   "use cache";
@@ -444,15 +450,15 @@ Prefetch時にどこまでレンダリングするか細かく制御できる
 ```tsx
 import { navigation, prefetch } from "next/cache";
 
-// Until Prefetching
 async function ProductStock({ id }: { id: string }) {
+  // ⚠️ build時は解決しない、prefetch時に解決
   await prefetch();
 
   return <StockView stock={await getStock(id)} />;
 }
 
-// Until Navigation
 async function ProductRecommendations({ id }: { id: string }) {
+  // ⚠️ build時は解決しない、navigation時に解決
   await navigation();
 
   return <RecommendationsView recommendations={await getRecommendations(id)} />;
@@ -463,7 +469,7 @@ async function ProductRecommendations({ id }: { id: string }) {
 
 # Instant NavigationsのOpt-out
 
-GitHubのように、ページアクセス時点で認可チェックなどしたいこともある
+ページアクセス時点で認可チェックなどしたいこともある
 
 Route Segment ConfigでOpt-out可能
 
@@ -471,6 +477,12 @@ Route Segment ConfigでOpt-out可能
 // page.tsx or layout.tsx
 export const instant = false;
 ```
+
+---
+layout: fact
+---
+
+## Navigation"s"最適化の『最高到達点』
 
 ---
 layout: section
@@ -484,22 +496,22 @@ section 5
 
 # Outro: Instant Navigations
 
-Hard Navigation, Soft Navigationどちらも高速にする最高到達点
+Instant Navigationsは今実現できる最高のNavigation
 
 - SSGとStreaming SSRのいいとこ取りをしたPPRがベース
 - PPR + Cache + Prefetchを統合してHard / Soft Navigationを最適化
 - 「_デフォルトで高いパフォーマンス、優れた開発者体験_」と呼ぶに相応しい設計
-- トレードオフはフレームワーク側の複雑性
+- トレードオフはフレームワーク側の複雑性と、プラットフォーム側サポートが必要なこと
 
 ---
 
-# 最後に: AI時代だからこそ理解すべきこと
+# 最後に: AI時代だからこそ
 
 AI時代だからこそ、Instant Navigationsの話をしたかった
 
-- AI時代だからこそ、我々開発者は今まで以上にUXと向き合うべきである
-- Instant Navigationsは今我々が向き合う最も重要なテーマの1つ
-- 各々がより良いNavigationを考えることが重要
+- AIで実装コストが下がったからこそ、UXの差は現れやすい
+- NavigationのUXは非常に重要
+- より良いUX・より良いNavigationについてみんなで考えていきましょう
 
 ---
 layout: section
