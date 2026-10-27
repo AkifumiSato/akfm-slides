@@ -36,6 +36,8 @@ importers:
 
   slides/2026/commune-nextjs-book-revision: {}
 
+  slides/2026/nextjs-instant-navigations: {}
+
   slides/2026/nextjs-user-developer: {}
 
   slides/2026/react-meta-perspective: {}
