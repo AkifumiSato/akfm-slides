@@ -73,7 +73,7 @@ layout: fact
 なぜ『最高到達点』なのか？
 
 1. Navigationと最適化の歴史
-2. Instant Navigations
+2. Cache ComponentsとInstant Navigations
 3. Instant Navigationsを構成する技術
 
 ---
@@ -165,16 +165,11 @@ Reactチームが推奨してる実装パターン
 </div>
 
 ---
-
-# Memo
-
-- App RouterはRender-as-you-fetchをサポートしており、Soft Navigation体験が良さそう
-- じゃあApp Routerが良いのか->`loading.tsx`がないとRender-as-you-fetchにならない
-- App Routerはその他にも諸々不評だった
-- App Routerの再設計版であるCache Componentsでは、デフォルトでRender-as-you-fetchになるように設計されてる、それが**Instant Navigations**
-
+layout: fact
 ---
-transition: fade
+
+## Render-as-You-Fetchが良いなら、App Routerが良い？
+
 ---
 
 # App Routerの不評
@@ -189,22 +184,46 @@ transition: fade
   - etc...
 
 ---
+layout: fact
+---
+
+## これらを解消すべくApp Routerを再設計したのが<br>Cache Components
+
+---
+layout: section
+---
+
+section 2
+
+# Cache Componentsと<br>Instant Navigations
+
+---
 transition: fade
 ---
 
-# 3. App Router(Cache Components)
+# Cache Components
 
 より直感的に、よりRSCらしく、より再粒度に
 
 - `"use cache"`によるOpt-in型なCache設計
+- Partial Pre-Rendering(PPR)による細粒度なレンダリング戦略
 - 動的処理に`<Suspense>`必須化によりTTFBやFCPを高速化
-- <span v-mark="{ color: 'red', type: 'underline' }" class="font-bold">Partial Pre-Rendering</span>(PPR)による細粒度なレンダリング戦略
 
 ---
 transition: fade
 ---
 
-# 3. App Router(Cache Components)
+# Cache Components
+
+Cache戦略: `"use cache"`はCacheへのドア
+
+<div class="flex justify-center mt-10">
+  <img src="/cache-doors.png" alt="Next.js Cache Door" class="h-72">
+</div>
+
+---
+
+# Cache Components
 
 Partial Pre-Rendering
 
@@ -214,31 +233,7 @@ Partial Pre-Rendering
 
 ---
 
-# 3. App Router(Cache Components)
-
-Cache戦略: `"use cache"`はCacheへのドア
-
-<div class="flex justify-center mt-10">
-  <img src="/cache-doors.png" alt="Next.js Cache Door" class="h-72">
-</div>
-
----
-layout: fact
----
-
-## Next.jsの歴史はHard Navigation中心<br>Soft Navigationは若干疎かだった
-
----
-layout: section
----
-
-section 2
-
 # Instant Navigations
-
----
-
-# Instant Navigationsとは
 
 これまで通り高速なHard Navigation、SPAのような高速なSoft Navigation
 
@@ -276,7 +271,7 @@ section 3
 - **Static Shell活用**: PPRのStatic Shell活用
 - **Segment Cache**: クライアントCacheの効率化
 - **Partial Prefetching**: 細粒度なPrefetchコントロール
-- **Remote Cache**: `"use cache"`による細粒度なCacheコントロール
+- **Dynamic Content with Cache**: `"use cache"`による細粒度なCacheコントロール
 
 ---
 
@@ -345,9 +340,30 @@ async function ProductRecommendations({ id }: { id: string }) {
 
 ---
 
-# Remote Cache
+# Dynamic Content with Cache
 
-TBW
+`"use cache"`による細粒度なCacheコントロール
+
+```tsx
+import { cacheLife, cacheTag } from "next/cache";
+
+// Component Level Cache
+async function Cached() {
+  "use cache";
+
+  return <>...</>;
+}
+
+// Function Level Cache
+export async function getProduct(id: string) {
+  "use cache";
+
+  cacheLife("hours");
+  cacheTag(`products/${id}`);
+
+  return fetchProduct(id);
+}
+```
 
 ---
 transition: fade
@@ -386,7 +402,7 @@ section 5
 Instant Navigationsは今実現できる最高のNavigation
 
 - ユーザーにとって瞬時のNavigationを実現
-  - Next.jsにおいて疎かになりがちだったSoft Navigationを極限まで最適化
+  - Next.jsにおけるSoft Navigationを極限まで最適化
   - 技術的要素: Static Shell活用, Segment Cache, Partial Prefetching
 - Next.jsのコンセプトである「_デフォルトで高いパフォーマンス、優れた開発者体験_」に相応しい機能設計
 
