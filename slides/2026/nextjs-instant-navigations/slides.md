@@ -72,7 +72,7 @@ layout: fact
 
 なぜ『最高到達点』なのか？
 
-1. Hard Navigation最適化の歴史
+1. Navigationと最適化の歴史
 2. Instant Navigations
 3. Instant Navigationsを構成する技術
 
@@ -82,89 +82,96 @@ layout: section
 
 section 1
 
-# Hard Navigation最適化の歴史
-
----
-transition: fade
----
-
-# 0. 従来のSPAの課題
-
-2010年代半ば〜
-
-SPAの登場により、<span v-mark="{ color: 'red', type: 'underline' }" class="font-bold">Soft Navigation</span>という概念が誕生
-
-- Hard Navigation: ブラウザ標準の仕組みでドキュメント全体を読み直すNavigation
-- Soft Navigation: History API等を利用して、必要な部分だけJavaScriptで差し替えるNavigation
-
-しかし、ReactやVueで実装したSPAはHard Navigationが疎かになりがちだった
+# Navigationと最適化の歴史
 
 ---
 
-# 0. 従来のSPAの課題
+# Hard/Soft Navigation
 
-2010年代半ば
+Webにおける2つのNavigation
+
+- **Hard Navigation**: ブラウザ標準の仕組みでドキュメント全体を読み直すNavigation
+- **Soft Navigation**: History API等を利用して、必要な部分だけJavaScriptで差し替えるNavigation
+
+---
+
+# Hard Navigationと最適化の歴史
+
+Next.js目線で考えると以下
+
+| 手法              | 画面遷移の開始 | 画面遷移の完了 |
+| ----------------- | -------------- | -------------- |
+| **SPA**           | 🚀             | ❌             |
+| **SSR**           | ❌             | 🚀             |
+| **Streaming SSR** | ✅             | 🚀             |
+| **PPR**           | 🚀             | 🚀             |
+
+---
+layout: fact
+---
+
+## ではSoft Navigationは？🤔
+
+---
+
+# Soft Navigationと最適化の歴史
+
+Reactのレンダリングとデータフェッチをどう設計するかが最適化の要
+
+1. **Fetch-on-Render**
+2. **Fetch-then-Render**
+3. **Render-as-You-Fetch**
+
+---
+
+# 1. Fetch-on-Render
+
+React初期によくみられた実装パターン
+
+- 定義: レンダリング開始後にデータフェッチすること
+- 例: `useEffect()`でデータフェッチ
+- パフォーマンス: Soft Navigation開始は早いが完了が遅い
 
 <div class="flex justify-center mt-6">
-  <img src="/spa.svg" alt="SPA" class="h-90">
+  <img src="/fetch-on-render.svg" alt="Fetch-on-Render" class="h-90">
 </div>
 
 ---
-transition: fade
----
 
-# 1. Pages Router
+# 2. Fetch-then-Render
 
-SPAのHard Navigation課題解決
+現在も見られる実装パターン
 
-- React系フレームワークとしてルーティングやbuild周りなど、基盤実装を提供
-- SPAにおける<span v-mark="{ color: 'red', type: 'underline' }" class="font-bold">Hard Navigation課題を解決</span>すべく、Server Side Rendering（SSR）を採用
-- 2016年にはStatic Site Generation（SSG）もサポート
-
----
-transition: fade
----
-
-# 1. Pages Router
-
-SSR
+- 定義: データフェッチ後にレンダリングを開始すること
+- 例: Next.js Pages RouterやTanstack Startなど
+- パフォーマンス: Soft Navigation開始は遅いが完了が早い
 
 <div class="flex justify-center mt-6">
-  <img src="/ssr.svg" alt="SSR" class="h-90">
+  <img src="/fetch-then-render.svg" alt="Fetch-then-Render" class="h-90">
 </div>
 
 ---
 
-# 1. Pages Router
+# 3. Render-as-You-Fetch
 
-SSG
+Reactチームが推奨してる実装パターン
+
+- 定義: データフェッチとレンダリングを同時に開始すること
+- 例: Next.js App Routerなど
+- パフォーマンス: Soft Navigationの開始も完了も早い
 
 <div class="flex justify-center mt-6">
-  <img src="/ssg.svg" alt="SSG" class="h-90">
+  <img src="/render-as-you-fetch.svg" alt="Fetch-then-Render" class="h-90">
 </div>
 
 ---
-transition: fade
----
 
-# 2. App Router(Legacy)
+# Memo
 
-SSRの進化とスケーラブルな設計
-
-- RSCサポートなフレームワークとしてNext.jsを再設計
-  - データフェッチコロケーションによるスケーラブルな設計
-  - バンドルサイズや処理の効率化
-- <span v-mark="{ color: 'red', type: 'underline' }" class="font-bold">Streaming SSR</span>によりSSRのボトルネックを分離可能に
-
----
-
-# 2. App Router(Legacy)
-
-Streaming SSR
-
-<div class="flex justify-center mt-6">
-  <img src="/streaming-ssr.svg" alt="Streaming SSR" class="h-90">
-</div>
+- App RouterはRender-as-you-fetchをサポートしており、Soft Navigation体験が良さそう
+- じゃあApp Routerが良いのか->`loading.tsx`がないとRender-as-you-fetchにならない
+- App Routerはその他にも諸々不評だった
+- App Routerの再設計版であるCache Componentsでは、デフォルトでRender-as-you-fetchになるように設計されてる、それが**Instant Navigations**
 
 ---
 transition: fade
@@ -175,7 +182,7 @@ transition: fade
 「優れた開発者体験」の破綻
 
 - Next.jsのコンセプト: **デフォルトで高いパフォーマンス、優れた開発者体験**
-- App Router初期の思想: CacheやSSGをデフォルトで積極的に活用
+- App Router初期の思想: Cacheをデフォルトで積極的に活用
   - Cacheがデフォルトで有効＆暗黙的で認知負荷が高い
   - ドキュメントの不足
   - devモードとproductionで挙動が違う
@@ -268,7 +275,8 @@ section 3
 
 - **Static Shell活用**: PPRのStatic Shell活用
 - **Segment Cache**: クライアントCacheの効率化
-- **Partial Prefetching**: 細粒度なPrefetchのコントロール
+- **Partial Prefetching**: 細粒度なPrefetchコントロール
+- **Remote Cache**: `"use cache"`による細粒度なCacheコントロール
 
 ---
 
@@ -334,6 +342,12 @@ async function ProductRecommendations({ id }: { id: string }) {
   return <RecommendationsView recommendations={await getRecommendations(id)} />;
 }
 ```
+
+---
+
+# Remote Cache
+
+TBW
 
 ---
 transition: fade
