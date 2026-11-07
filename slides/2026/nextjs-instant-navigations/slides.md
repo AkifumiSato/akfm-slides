@@ -132,8 +132,8 @@ React初期によくみられた実装パターン
 - 例: `useEffect()`でデータフェッチ
 - パフォーマンス: Soft Navigation開始は早いが完了が遅い
 
-<div class="flex justify-center mt-6">
-  <img src="/fetch-on-render.svg" alt="Fetch-on-Render" class="h-90">
+<div class="flex justify-center mt-2">
+  <img src="/fetch-on-render.svg" alt="Fetch-on-Render" class="h-70">
 </div>
 
 ---
@@ -146,8 +146,8 @@ React初期によくみられた実装パターン
 - 例: Next.js Pages RouterやTanstack Startなど
 - パフォーマンス: Soft Navigation開始は遅いが完了が早い
 
-<div class="flex justify-center mt-6">
-  <img src="/fetch-then-render.svg" alt="Fetch-then-Render" class="h-90">
+<div class="flex justify-center mt-2">
+  <img src="/fetch-then-render.svg" alt="Fetch-then-Render" class="h-70">
 </div>
 
 ---
@@ -160,8 +160,8 @@ Reactチームが推奨してる実装パターン
 - 例: Next.js App Routerなど
 - パフォーマンス: Soft Navigationの開始も完了も早い
 
-<div class="flex justify-center mt-6">
-  <img src="/render-as-you-fetch.svg" alt="Fetch-then-Render" class="h-90">
+<div class="flex justify-center mt-2">
+  <img src="/render-as-you-fetch.svg" alt="Fetch-then-Render" class="h-70">
 </div>
 
 ---
