@@ -55,6 +55,11 @@
 <path d="M340 392 C470.0 383, 730.0 383, 860 392 M339.6 391.4 C470.0 381.2, 730.0 382.4, 860.4 391.7" stroke="#4aa3f0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M860.00 392.00 L846.30 398.11 M860.40 392.20 L846.70 397.71" stroke="#4aa3f0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M860.00 392.00 L847.27 384.06 M859.70 391.85 L846.97 384.36" stroke="#4aa3f0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M592.6 338.2 L607.4 338.2 L600.0 350.0 Z" fill="#e6c84f" stroke="none"/>
+<path d="M600.0 357.0 L610.3 371.0 L589.7 371.0 Z" fill="#e6c84f" stroke="none"/>
+<path d="M587.53 331.02 C597.01 330.72, 604.93 331.60, 610.74 332.02 C606.64 338.80, 603.27 344.77, 601.79 352.92 C603.99 358.17, 609.49 367.34, 612.19 371.71 C605.50 370.64, 596.64 371.37, 587.03 370.93 C590.75 365.95, 593.73 358.24, 598.39 351.64 C594.70 343.69, 589.25 337.12, 588.53 331.80 M587.50 332.24 C596.22 331.40, 605.97 332.60, 611.26 332.21 C608.59 340.13, 605.91 345.36, 603.34 350.93 C605.16 359.77, 607.59 365.97, 610.69 372.47 C604.65 372.22, 596.71 371.44, 588.57 372.26 C591.83 364.87, 596.37 359.33, 597.93 352.46 C592.75 345.60, 591.60 339.48, 588.92 331.40" stroke="#e0e0e0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M585.42 329.47 C593.81 328.89, 604.38 327.85, 613.03 329.75 M584.70 328.29 C595.29 330.11, 604.03 328.85, 614.40 330.07" stroke="#e0e0e0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M586.63 376.02 C594.84 374.75, 605.14 376.15, 615.54 374.02 M584.83 374.25 C594.66 374.95, 606.06 374.29, 612.87 374.77" stroke="#e0e0e0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M215 292 C211 200, 460 118, 510 116" stroke="#e0e0e0" stroke-width="1.6" fill="none" stroke-dasharray="8 7" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M510.00 116.00 L498.77 122.56 M510.40 116.20 L499.17 122.16" stroke="#e0e0e0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M510.00 116.00 L498.29 110.36 M509.70 115.85 L497.99 110.66" stroke="#e0e0e0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>

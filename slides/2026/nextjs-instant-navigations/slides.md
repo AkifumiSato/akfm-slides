@@ -129,7 +129,7 @@ Reactのレンダリングとデータフェッチをどう設計するかが最
 React初期によくみられた実装パターン
 
 - 定義: レンダリング開始後にデータフェッチすること
-- 例: `useEffect()`でデータフェッチ
+- 例: `useEffect()`でデータフェッチ、React Router v4～5など
 - パフォーマンス: Soft Navigation開始は早いが完了が遅い
 
 <div class="flex justify-center mt-2">
@@ -143,7 +143,7 @@ React初期によくみられた実装パターン
 現在も見られる実装パターン
 
 - 定義: データフェッチ後にレンダリングを開始すること
-- 例: Next.js Pages RouterやTanstack Startなど
+- 例: Next.js（Pages Router）、React RouterやTanstack Start（デフォルト）
 - パフォーマンス: Soft Navigation開始は遅いが完了が早い
 
 <div class="flex justify-center mt-2">
@@ -157,7 +157,7 @@ React初期によくみられた実装パターン
 Reactチームが推奨してる実装パターン
 
 - 定義: データフェッチとレンダリングを同時に開始すること
-- 例: Next.js App Routerなど
+- 例: Next.js（App Router）、React RouterやTanstack Start（オプショナル）
 - パフォーマンス: Soft Navigationの開始も完了も早い
 
 <div class="flex justify-center mt-2">
@@ -207,7 +207,7 @@ transition: fade
 
 - `"use cache"`によるOpt-in型なCache設計
 - Partial Pre-Rendering(PPR)による細粒度なレンダリング戦略
-- 動的処理に`<Suspense>`必須化によりTTFBやFCPを高速化
+- 動的処理に`<Suspense>`を必須化、PPRの適用を確実化
 
 ---
 transition: fade
@@ -281,7 +281,6 @@ PPRのStatic ShellはSoft Navigationでも積極的に活用
 
 <ul>
   <li>PPRではbuild時にStatic Shell（HTMLとRSC Payload）を生成</li>
-  <li>Soft NavigationではRSC Payloadをやりとりする</li>
   <li>Staticなのでprefetchしてもサーバー負担が少なく、クライアントサイドでも使いまわしやすい</li>
 </ul>
 <div class="flex justify-center w-full">
@@ -297,8 +296,8 @@ Cache ComponentsではクライアントサイドのCacheを細粒度に管理
 - 従来URL単位で行ってたクライアントCacheをSegment単位（e.g. `/chat/[id]`）に再実装
 - Cacheの再利用性が高まった
 
-<div class="flex justify-center mt-10">
-  <img src="/segment-cache-request.png" alt="Segment Cache Request" class="h-50">
+<div class="flex justify-center mt-4">
+  <img src="/segment-cache.svg" alt="Segment Cache" class="h-72">
 </div>
 
 ---
