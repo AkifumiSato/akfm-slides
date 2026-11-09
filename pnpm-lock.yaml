@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@slidev/cli':
         specifier: 52.14.1
-        version: 52.14.1(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.15)(@vue/compiler-sfc@3.5.30)(markdown-it@14.1.1)(postcss@8.5.8)
+        version: 52.14.1(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.15)(@vue/compiler-sfc@3.5.30)(markdown-it@14.1.1)(playwright-chromium@1.64.1)(postcss@8.5.8)
       '@slidev/theme-default':
         specifier: 0.25.0
         version: 0.25.0
@@ -36,7 +36,11 @@ importers:
 
   slides/2026/commune-nextjs-book-revision: {}
 
-  slides/2026/nextjs-instant-navigations: {}
+  slides/2026/nextjs-instant-navigations:
+    devDependencies:
+      playwright-chromium:
+        specifier: 1.64.1
+        version: 1.64.1
 
   slides/2026/nextjs-user-developer: {}
 
@@ -2601,6 +2605,16 @@ packages:
   plantuml-encoder@1.4.0:
     resolution: {integrity: sha512-sxMwpDw/ySY1WB2CE3+IdMuEcWibJ72DDOsXLkSmEaSzwEUaYBT6DWgOfBiHGCux4q433X6+OEFWjlVqp7gL6g==}
 
+  playwright-chromium@1.64.1:
+    resolution: {integrity: sha512-lvAzvvIRtbHaeLwl7XoUkhSNuWHKshbrYv2sjqYgLQS4SsTTwgSTlg9BwU5LeGxYkHxBXTnKtNDEQdZSOj/01g==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  playwright-core@1.64.1:
+    resolution: {integrity: sha512-BC4s8y6SEVA6Q1rSxZTto8hI1KUI3xXlHGZgvGqP4IqPdI/a6FX9H29IDNz7vKo9l21b6LfYosScPL6M3xxyDQ==}
+    engines: {node: '>=20'}
+    hasBin: true
+
   plop@4.0.5:
     resolution: {integrity: sha512-pJz6oWC9LyBp5mBrRp8AUV2RNiuGW+t/HOs4zwN+b/3YxoObZOOFvjn1mJMpAeKi2pbXADMFOOVQVTVXEdDHDw==}
     engines: {node: '>=18'}
@@ -3971,7 +3985,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@slidev/cli@52.14.1(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.15)(@vue/compiler-sfc@3.5.30)(markdown-it@14.1.1)(postcss@8.5.8)':
+  '@slidev/cli@52.14.1(@nuxt/kit@3.21.2)(@types/markdown-it@14.1.2)(@types/node@22.19.15)(@vue/compiler-sfc@3.5.30)(markdown-it@14.1.1)(playwright-chromium@1.64.1)(postcss@8.5.8)':
     dependencies:
       '@antfu/ni': 28.3.0
       '@antfu/utils': 9.3.0
@@ -4043,6 +4057,8 @@ snapshots:
       vue: 3.5.29(typescript@5.9.3)
       yaml: 2.8.2
       yargs: 18.0.0
+    optionalDependencies:
+      playwright-chromium: 1.64.1
     transitivePeerDependencies:
       - '@nuxt/kit'
       - '@pinia/colada'
@@ -6323,6 +6339,12 @@ snapshots:
       pathe: 2.0.3
 
   plantuml-encoder@1.4.0: {}
+
+  playwright-chromium@1.64.1:
+    dependencies:
+      playwright-core: 1.64.1
+
+  playwright-core@1.64.1: {}
 
   plop@4.0.5(@types/node@22.19.15):
     dependencies:

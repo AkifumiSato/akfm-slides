@@ -2,3 +2,4 @@ packages:
   - "slides/*/*"
 allowBuilds:
   esbuild: false
+  playwright-chromium: true

@@ -6,5 +6,8 @@
     "build": "slidev build --base /akfm-slides/2026/nextjs-instant-navigations/",
     "dev": "slidev",
     "export": "slidev export"
+  },
+  "devDependencies": {
+    "playwright-chromium": "1.64.1"
   }
 }

@@ -145,3 +145,5 @@ dist
 
 # Turborepo
 .turbo
+
+slides-export.pdf
