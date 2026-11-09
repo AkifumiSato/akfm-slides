@@ -75,6 +75,7 @@ layout: fact
 1. Navigationと最適化の歴史
 2. Cache ComponentsとInstant Navigations
 3. Instant Navigationsを構成する技術
+4. Instant Navigationsの進化と真価
 
 ---
 layout: section
@@ -281,7 +282,7 @@ PPRのStatic ShellはSoft Navigationでも積極的に活用
 
 <ul>
   <li>PPRではbuild時にStatic Shell（HTMLとRSC Payload）を生成</li>
-  <li>Staticなのでprefetchしてもサーバー負担が少なく、クライアントサイドでも使いまわしやすい</li>
+  <li>StaticなのでPrefetchしてもサーバー負担が少なく、クライアントサイドでも使いまわしやすい</li>
 </ul>
 <div class="flex justify-center w-full">
   <img src="/ppr.svg" alt="PPR" class="h-80">
@@ -365,25 +366,31 @@ export async function getProduct(id: string) {
 ```
 
 ---
-transition: fade
+layout: section
 ---
 
-# Soft Navigationの進化（Next.js）
+section 4
 
-Dynamic Contentを含むページのSoft Navigation時処理
-
-<div class="flex justify-center mt-10">
-  <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="h-90">
-</div>
+# Instant Navigationsの<br>進化と真価
 
 ---
 
-# Soft Navigationの進化（Next.js・SPA）
+# Next.jsにおけるSoft Navigationの進化
 
-Dynamic Contentを含むページのSoft Navigation時処理
+動的なページへのSoft Navigationのイメージ
 
-<div class="flex justify-center mt-10">
-  <img src="/spa-vs-instant-navigations.svg" alt="Instant Navigation vs SPA" class="h-90">
+<div class="flex justify-center">
+  <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="h-100">
+ </div>
+
+---
+
+# SPAとのInstant Navigationsの比較
+
+動的なページへのSoft Navigationのイメージ（JavaScriptなどのPrefetchは除く）
+
+<div class="flex justify-center">
+  <img src="/spa-vs-instant-navigations.svg" alt="Instant Navigation vs SPA" class="h-100">
 </div>
 
 ---
