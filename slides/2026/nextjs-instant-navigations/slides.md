@@ -377,7 +377,7 @@ section 4
 
 # Next.jsにおけるSoft Navigationの進化
 
-動的なページへのSoft Navigationのイメージ
+Instant Navigationsは従来のNext.jsのNavigationの正統派進化系
 
 <div class="flex justify-center">
   <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="h-100">
@@ -385,9 +385,9 @@ section 4
 
 ---
 
-# SPAとのInstant Navigationsの比較
+# SPAとの比較
 
-動的なページへのSoft Navigationのイメージ
+Instant NavigationsはSPA Likeと称されるがより高度に最適化されてる
 
 <div class="flex justify-center mt-15">
   <img src="/spa-vs-instant-navigations.svg" alt="Instant Navigation vs SPA" class="w-full">
