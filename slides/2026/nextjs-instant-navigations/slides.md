@@ -144,7 +144,7 @@ React初期によくみられた実装パターン
 現在も見られる実装パターン
 
 - 定義: データフェッチ後にレンダリングを開始すること
-- 例: Next.js（Pages Router）、React RouterやTanstack Start（デフォルト）
+- 例: Next.js（Pages Router）、React RouterやTanstack Router（デフォルト）
 - パフォーマンス: Soft Navigation開始は遅いが完了が早い
 
 <div class="flex justify-center mt-2">
@@ -158,7 +158,7 @@ React初期によくみられた実装パターン
 Reactチームが推奨してる実装パターン
 
 - 定義: データフェッチとレンダリングを同時に開始すること
-- 例: Next.js（App Router）、React RouterやTanstack Start（オプショナル）
+- 例: Next.js（App Router）、React RouterやTanstack Router（オプショナル）
 - パフォーマンス: Soft Navigationの開始も完了も早い
 
 <div class="flex justify-center mt-2">
@@ -294,7 +294,7 @@ PPRのStatic ShellはSoft Navigationでも積極的に活用
 
 Cache ComponentsではクライアントサイドのCacheを細粒度に管理
 
-- 従来URL単位で行ってたクライアントCacheをSegment単位（e.g. `/chat/[id]`）に再実装
+- 従来URL単位で行ってたクライアントCacheをSegment単位（e.g. `/products/[id]`）に再実装
 - Cacheの再利用性が高まった
 
 <div class="flex justify-center mt-4">
@@ -377,20 +377,20 @@ section 4
 
 # Next.jsにおけるSoft Navigationの進化
 
-動的なページへのSoft Navigationのイメージ
+Instant Navigationsは従来のNext.jsのNavigationの正統派進化系
 
-<div class="flex justify-center">
-  <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="h-100">
+<div class="flex justify-center mt-10">
+  <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="w-full">
  </div>
 
 ---
 
-# SPAとのInstant Navigationsの比較
+# SPAとの比較
 
-動的なページへのSoft Navigationのイメージ（JavaScriptなどのPrefetchは除く）
+Instant NavigationsはSPA Likeと称されるがより高度に最適化されてる
 
-<div class="flex justify-center">
-  <img src="/spa-vs-instant-navigations.svg" alt="Instant Navigation vs SPA" class="h-100">
+<div class="flex justify-center mt-20">
+  <img src="/spa-vs-instant-navigations.svg" alt="Instant Navigation vs SPA" class="w-full">
 </div>
 
 ---
