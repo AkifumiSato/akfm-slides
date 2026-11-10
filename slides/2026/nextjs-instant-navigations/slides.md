@@ -379,8 +379,8 @@ section 4
 
 Instant Navigationsは従来のNext.jsのNavigationの正統派進化系
 
-<div class="flex justify-center">
-  <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="h-100">
+<div class="flex justify-center mt-10">
+  <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="w-full">
  </div>
 
 ---
@@ -389,7 +389,7 @@ Instant Navigationsは従来のNext.jsのNavigationの正統派進化系
 
 Instant NavigationsはSPA Likeと称されるがより高度に最適化されてる
 
-<div class="flex justify-center mt-15">
+<div class="flex justify-center mt-20">
   <img src="/spa-vs-instant-navigations.svg" alt="Instant Navigation vs SPA" class="w-full">
 </div>
 
