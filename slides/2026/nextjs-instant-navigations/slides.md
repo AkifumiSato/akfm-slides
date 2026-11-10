@@ -144,7 +144,7 @@ React初期によくみられた実装パターン
 現在も見られる実装パターン
 
 - 定義: データフェッチ後にレンダリングを開始すること
-- 例: Next.js（Pages Router）、React RouterやTanstack Router（デフォルト）
+- 例: Next.js（Pages Router）、React RouterやTanStack Router（デフォルト）
 - パフォーマンス: Soft Navigation開始は遅いが完了が早い
 
 <div class="flex justify-center mt-2">
@@ -158,7 +158,7 @@ React初期によくみられた実装パターン
 Reactチームが推奨してる実装パターン
 
 - 定義: データフェッチとレンダリングを同時に開始すること
-- 例: Next.js（App Router）、React RouterやTanstack Router（オプショナル）
+- 例: Next.js（App Router）、React RouterやTanStack Router（オプショナル）
 - パフォーマンス: Soft Navigationの開始も完了も早い
 
 <div class="flex justify-center mt-2">
