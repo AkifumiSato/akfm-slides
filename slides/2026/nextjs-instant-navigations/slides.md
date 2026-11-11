@@ -319,12 +319,12 @@ transition: fade
 
 # Partial Prefetching
 
-`partialPrefetching`と呼ばれる、細粒度なPrefetch戦略
+PPFと略される、細粒度なPrefetch戦略
 
-- Static Shellは積極的にPrefetch
-- Dynamic ContentはPrefetchを細かく制御したい
-  - Opt-in方式: `<Link>`の`prefetch={true}`でOpt-in
-  - レンダリング範囲: Prefetch時にどこまでレンダリングするかも制御可能
+- Static Shell: 積極的にPrefetchしたい
+- Dynamic Content: 細かく制御したい
+  - Dynamic Contentには Prefetchできる (Prefetchable) ものとできないものがある
+  - `await prefetch()`や`await navigation()`でレンダリング範囲を制御
 
 ---
 
@@ -336,14 +336,14 @@ Prefetch時にどこまでレンダリングするか細かく制御できる
 import { navigation, prefetch } from "next/cache";
 
 async function ProductStock({ id }: { id: string }) {
-  // ⚠️ build時は解決しない、prefetch時に解決
+  // ⚠️ Dynamic (Prefetchable): build時は解決しない、prefetch時に解決
   await prefetch();
 
   return <StockView stock={await getStock(id)} />;
 }
 
 async function ProductRecommendations({ id }: { id: string }) {
-  // ⚠️ build時もprefetch時も解決しない、navigation時に解決
+  // ⚠️ Dynamic: build時もprefetch時も解決しない、navigation時に解決
   await navigation();
 
   return <RecommendationsView recommendations={await getRecommendations(id)} />;
