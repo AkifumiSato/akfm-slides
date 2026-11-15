@@ -49,9 +49,8 @@ Navigation最適化の最高到達点
 ```jsonc
 // profile.jsonc
 {
-  "name": "佐藤 昭文",
+  "name": "Akifumi Sato",
   "alias": ["akfm_sato", "あっきー"],
-  "job": ["フロントエンドエキスパート", "技術顧問"],
   "tags": ["Next.js", "React", "UX"],
   "sns": {
     "x": "akfm_sato",

@@ -27,9 +27,8 @@ mdc: true
 ```jsonc
 // profile.jsonc
 {
-  "name": "佐藤 昭文",
+  "name": "Akifumi Sato",
   "alias": ["akfm_sato", "あっきー"],
-  "job": ["フロントエンドエキスパート", "技術顧問"],
   "tags": ["Next.js", "React", "UX"],
   "sns": {
     "x": "akfm_sato",
