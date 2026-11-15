@@ -419,8 +419,11 @@ section 5
 Instant Navigationsは今実現できる最高のNavigation
 
 - ユーザーにとって瞬時のNavigationを実現
-  - Next.jsにおけるSoft Navigationを極限まで最適化
-  - 技術的要素: Static Shell活用, Segment Cache, Partial Prefetching
+  - Static Shell活用
+  - Segment Cache
+  - Partial Prefetching
+  - Dynamic Content Cache
+- ここまでNavigationの最適化目指してるフレームワークは稀有
 - Next.jsのコンセプトである「_デフォルトで高いパフォーマンス、優れた開発者体験_」に相応しい機能設計
 
 ---
