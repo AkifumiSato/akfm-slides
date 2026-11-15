@@ -245,6 +245,15 @@ Partial Pre-Rendering
 
 ---
 
+# 余談: JSConf.jp 2025 - Next.js Caching
+
+去年のJSConfで詳細語ってるので詳しくは以下参照
+
+- [youtube](https://www.youtube.com/watch?v=aD2-myEc66A)
+- [slide](https://akifumisato.github.io/slide-of-nextjs-future-cache-2025/1)
+
+---
+
 # Instant Navigations
 
 これまで通り高速なHard Navigation、SPAのような高速なSoft Navigation
