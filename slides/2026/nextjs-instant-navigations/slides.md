@@ -184,12 +184,12 @@ layout: fact
 
 ---
 
-# App Routerの不評
+# App Router初期における、Cache不評問題
 
 「優れた開発者体験」の破綻
 
-- Next.jsのコンセプト: **デフォルトで高いパフォーマンス、優れた開発者体験**
-- App Router初期の思想: Cacheをデフォルトで積極的に活用
+- Next.jsのコンセプト: <span class="font-bold" v-mark="{ color: 'orange' }">デフォルトで高いパフォーマンス、優れた開発者体験</span>
+- App Router初期の思想: <span class="font-bold" v-mark="{ color: 'orange' }">フレームワーク側でよしなにCache</span>
   - Cacheがデフォルトで有効＆暗黙的で認知負荷が高い
   - ドキュメントの不足
   - devモードとproductionで挙動が違う
@@ -399,9 +399,14 @@ section 4
 
 Instant Navigationsは従来のNext.jsのNavigationの正統派進化系
 
-<div class="flex justify-center mt-10">
+<div class="relative flex justify-center mt-10">
   <img src="/instant-navigation-sequence.svg" alt="Instant Navigation Sequence" class="w-full">
- </div>
+  <div
+    v-mark="{ type: 'circle', color: 'red' }"
+    class="absolute pointer-events-none"
+    style="left: 13%; top: 63%; width: 70%; height: 30%;"
+  ></div>
+</div>
 
 ---
 
