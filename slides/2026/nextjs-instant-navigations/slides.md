@@ -71,7 +71,7 @@ layout: fact
 
 なぜ『最高到達点』なのか？
 
-1. Navigationと最適化の歴史
+1. ReactとNavigationの歴史
 2. Cache ComponentsとInstant Navigations
 3. Instant Navigationsを構成する技術
 4. Instant Navigationsの進化と真価
@@ -82,7 +82,7 @@ layout: section
 
 section 1
 
-# Navigationと最適化の歴史
+# ReactとNavigationの歴史
 
 ---
 
@@ -95,12 +95,13 @@ Webにおける2つのNavigation
 
 ---
 
-# Hard Navigationと最適化の歴史
+# Hard Navigation最適化とレンダリング戦略
 
-Next.js目線で考えると以下
+ReactやNext.js目線で考えると以下
 
 | 手法              | 画面遷移の開始 | 画面遷移の完了 |
 | ----------------- | -------------- | -------------- |
+| **MPA**           | ❌             | 🚀             |
 | **SPA**           | 🚀             | ❌             |
 | **SSR**           | ❌             | 🚀             |
 | **Streaming SSR** | ✅             | 🚀             |
@@ -110,13 +111,13 @@ Next.js目線で考えると以下
 layout: fact
 ---
 
-## ではSoft Navigationは？🤔
+## Hard Navigationの議論はこれまでよくされてきた<br>ではSoft Navigationは？🤔
 
 ---
 
-# Soft Navigationと最適化の歴史
+# Soft Navigation最適化とデータフェッチ戦略
 
-Reactのレンダリングとデータフェッチをどう設計するかが最適化の要
+レンダリングとデータフェッチをどう設計するかが最適化の要
 
 1. **Fetch-on-Render**
 2. **Fetch-then-Render**
@@ -166,7 +167,7 @@ Reactチームが推奨してる実装パターン
 
 ---
 
-# Soft Navigationと最適化の歴史
+# Soft Navigation最適化の歴史
 
 レンダリングパターンごとの比較
 
@@ -180,7 +181,13 @@ Reactチームが推奨してる実装パターン
 layout: fact
 ---
 
-## Render-as-You-Fetchが良いなら、App Routerが良い？
+## 高速なNavigationを体験させたいのであって<br>ローダーを出したいわけじゃない
+
+---
+layout: fact
+---
+
+## 高速なNavigationにはStreamingやCacheが重要
 
 ---
 
